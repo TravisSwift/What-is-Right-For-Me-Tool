@@ -1,0 +1,20 @@
+body { font-family: Arial, sans-serif; background: white; color: #333; margin: 0; padding: 20px; }
+.container { max-width: 800px; margin: auto; }
+.header { text-align: center; margin-bottom: 20px; }
+.step { display: none; }
+.active { display: block; }
+.button { background: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+.button:hover { background: #0056b3; }
+.card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; position: relative; }
+.tooltip { position: relative; display: inline-block; cursor: help; }
+.tooltip .icon { width: 16px; height: 16px; }
+.tooltip .tooltip-text { display: none; position: absolute; background: #fff; border: 1px solid #ddd; padding: 10px; width: 200px; z-index: 1; top: 20px; right: 0; }
+.tooltip:hover .tooltip-text { display: block; }
+.sidebar { position: fixed; left: 20px; top: 100px; width: 150px; }
+.progress { list-style: none; padding: 0; }
+.progress li { margin: 10px 0; cursor: pointer; }
+.progress li.active { font-weight: bold; }
+.rocket { width: 24px; height: 24px; transition: transform 0.5s; } /* Fun animation */
+input, label { display: block; margin: 10px 0; }
+.schematic, .equipment-image { max-width: 100%; height: auto; margin: 10px 0; }
+img { max-width: 100%; height: auto; }
