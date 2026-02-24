@@ -23,6 +23,13 @@ function updateProgress() {
         li.classList.toggle('active', i <= currentStep);
         if (i === currentStep) li.querySelector('.rocket').style.transform = 'rotate(45deg)'; // Fun animation
     });
+
+    // Update mobile progress dots
+    let dotsHtml = '';
+    steps.forEach((_, i) => {
+        dotsHtml += `<div class="dot ${i <= currentStep ? 'active' : ''}"></div>`;
+    });
+    document.getElementById('mobile-steps').innerHTML = dotsHtml;
 }
 
 function saveData() {
@@ -116,7 +123,7 @@ function placeOrder() {
 loadData();
 updateProgress();
 
-// Generate on step entry (for persistence) – Use DOMContentLoaded for timing
+// Generate on step entry (for persistence)
 document.addEventListener('DOMContentLoaded', () => {
-    // Add event listeners here if needed, but most are inline
+    // Add event listeners if needed, but most are already set
 });
