@@ -26,15 +26,6 @@
         <div id="step-intro" class="step active">
             <p>Starlink uses satellites in space to deliver high-speed internet anywhere—no cables or phone lines needed. Latency is low (20-50ms), speeds 50-220Mbps, and it's resilient to weather with built-in heaters.</p>
             <img src="images/home-setup.png" alt="Home Setup Schematic" class="schematic">
-            <svg width="400" height="200" viewBox="0 0 400 200"> <!-- Placeholder schematic as fallback -->
-                <rect x="150" y="10" width="100" height="50" fill="#ccc" /> <!-- Dish -->
-                <text x="200" y="35" text-anchor="middle">Dish on Roof</text>
-                <line x1="200" y1="60" x2="200" y2="100" stroke="black" /> <!-- Cable -->
-                <rect x="175" y="100" width="50" height="30" fill="#007bff" /> <!-- Router -->
-                <text x="200" y="120" text-anchor="middle">Router</text>
-                <circle cx="200" cy="150" r="40" fill="none" stroke="#007bff" /> <!-- Wi-Fi -->
-                <text x="200" y="155" text-anchor="middle">Wi-Fi</text>
-            </svg>
             <button class="button" onclick="nextStep('intro', 'location')">Start Quiz</button>
         </div>
 
@@ -90,4 +81,54 @@
 
         <div id="step-installation" class="step">
             <h2>Step 5: Installation Explained</h2>
-            <p>Starlink is easy to set up—90%
+            <p>Starlink is easy to set up—90% of users self-install in 5-10 minutes. No tools needed!</p>
+            <img src="images/home-setup.png" alt="Installation Schematic" class="schematic">
+            <div class="card">
+                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">App guides pointing dish; resilient to rain/snow. Pro install $199+ if needed (select areas).</span></span>
+                <ol>
+                    <li>Download Starlink app.</li>
+                    <li>Find clear sky spot (no trees/buildings blocking).</li>
+                    <li>Point dish north, plug cable to router.</li>
+                    <li>Connect router to power—Wi-Fi starts!</li>
+                </ol>
+                <p>Worried? 30-day trial includes full hardware refund. Support via app if stuck.</p>
+            </div>
+            <button class="button" onclick="nextStep('installation', 'plan')">Next</button>
+        </div>
+
+        <div id="step-plan" class="step">
+            <h2>Step 6: Service Plan</h2>
+            <div id="plan-cards"></div>
+            <button class="button" onclick="nextStep('plan', 'summary')">Next</button>
+        </div>
+
+        <div id="step-summary" class="step">
+            <h2>Summary & Order</h2>
+            <div id="summary-content"></div>
+            <button class="button" onclick="placeOrder()">Place Order Now</button>
+            <p>After ordering, explore accessories like mounts or mesh to customize: <a href="#" onclick="alert('Link to shop.starlink.com/collections/accessories in production')">View Accessories</a></p>
+        </div>
+    </div>
+
+    <!-- New mobile progress bar -->
+    <div class="mobile-progress">
+        <div id="mobile-steps"></div>
+    </div>
+
+    <!-- Sidebar Progress (now hides on mobile) -->
+    <div class="sidebar">
+        <ul class="progress">
+            <li onclick="goToStep('intro')">Intro <img src="images/rocket-icon.png" alt="Rocket" class="rocket"></li>
+            <li onclick="goToStep('location')">Location</li>
+            <li onclick="goToStep('use-case')">Use Case</li>
+            <li onclick="goToStep('usage')">Usage</li>
+            <li onclick="goToStep('equipment')">Equipment</li>
+            <li onclick="goToStep('installation')">Installation</li>
+            <li onclick="goToStep('plan')">Plan</li>
+            <li onclick="goToStep('summary')">Summary</li>
+        </ul>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
