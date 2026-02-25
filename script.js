@@ -1,4 +1,4 @@
-const steps = ['intro', 'location', 'use-case', 'usage', 'equipment', 'installation', 'plan', 'summary'];
+const steps = ['intro', 'location', 'use-case', 'usage', 'equipment', 'installation', 'plan', 'summary', 'services', 'kits'];
 let currentStep = 0;
 let userData = { address: '', useCase: '', usage: [], users: '', kit: '', plan: '', promo: '', fee: '' };
 
@@ -57,6 +57,14 @@ function checkLocation() {
     }
     document.getElementById('location-result').innerHTML = `<p>${result}</p>`;
     nextStep('location', 'use-case');
+}
+
+// New mock for services address check
+function mockAddressCheck() {
+    const address = document.getElementById('services-address').value;
+    alert('In production: Redirect to Starlink availability checker with address: ' + address);
+    // Simulate result
+    document.getElementById('services-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
 }
 
 // Event listeners for radios (show cards)

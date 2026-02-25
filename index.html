@@ -10,25 +10,14 @@
     <div class="container">
         <div class="header">
             <h1>What Starlink Kit Is Right For Me?</h1>
-            <p>Discover the best Starlink setup for your needs. We'll guide you step by step!</p>
-            <!-- Bullet points from flowchart -->
-            <ul>
-                <li>A single residence</li>
-                <li>One person or a whole family</li>
-                <li>Gaming, streaming, and surfing</li>
-                <li>Roaming and mobile internet</li>
-                <li>Portable and light</li>
-                <li>Travel across & out of the country</li>
-            </ul>
+            <p>Discover the best Starlink setup for your needs. Choose an option to start!</p>
+            <!-- Initial three choices -->
+            <button class="button" onclick="nextStep('intro', 'location')">1. What Kit is Right for Me Quiz</button>
+            <button class="button" onclick="nextStep('intro', 'services')">2. View the Services</button>
+            <button class="button" onclick="nextStep('intro', 'kits')">3. View the Kits</button>
         </div>
 
         <!-- Steps -->
-        <div id="step-intro" class="step active">
-            <p>Starlink uses satellites in space to deliver high-speed internet anywhere—no cables or phone lines needed. Latency is low (20-50ms), speeds 50-220Mbps, and it's resilient to weather with built-in heaters.</p>
-            <img src="images/home-setup.png" alt="Home Setup Schematic" class="schematic">
-            <button class="button" onclick="nextStep('intro', 'location')">Start Quiz</button>
-        </div>
-
         <div id="step-location" class="step">
             <h2>Step 1: Your Location</h2>
             <p>Enter your address or ZIP to check availability and pricing (varies by area due to network capacity).</p>
@@ -108,6 +97,64 @@
             <button class="button" onclick="placeOrder()">Place Order Now</button>
             <p>After ordering, explore accessories like mounts or mesh to customize: <a href="#" onclick="alert('Link to shop.starlink.com/collections/accessories in production')">View Accessories</a></p>
         </div>
+
+        <!-- New Services Step -->
+        <div id="step-services" class="step">
+            <h2>View Services</h2>
+            <p>Not all services are available in all areas. Enter your address to see what's available for you.</p>
+            <input type="text" id="services-address" placeholder="Enter address for availability check">
+            <button class="button" onclick="mockAddressCheck()">Check Availability</button>
+            <div id="services-result"></div>
+            <div class="card">
+                <h3>Residential Services</h3>
+                <ul>
+                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi</li>
+                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi</li>
+                    <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Roam Services</h3>
+                <ul>
+                    <li>100GB: $50/mo, then low-speed</li>
+                    <li>Unlimited: $165/mo, in-motion OK</li>
+                </ul>
+            </div>
+            <button class="button" onclick="nextStep('services', 'location')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
+        </div>
+
+        <!-- New Kits Step -->
+        <div id="step-kits" class="step">
+            <h2>View Kits</h2>
+            <div class="card">
+                <h3>Standard Gen 3 Kit</h3>
+                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
+                <ul>
+                    <li>Price: $349 (or promo)</li>
+                    <li>Dimensions: 23.4x15x1.5in</li>
+                    <li>Weight: 6.4lbs</li>
+                    <li>Wi-Fi 6 up to 3200 sq ft</li>
+                    <li>Plug & Play Setup</li>
+                    <li>Weather Resilient, >99.9% Uptime</li>
+                    <li>Components: Starlink, Kickstand, Gen 3 Router, Starlink Cable, AC Cable, Power Supply</li>
+                    <li>Designed for self-install: Plug it in, Point at sky</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Mini Kit</h3>
+                <img src="images/mini-kit.png" alt="Mini Kit">
+                <ul>
+                    <li>Price: $599</li>
+                    <li>Dimensions: 12x10x1.5in</li>
+                    <li>Weight: 2.5lbs</li>
+                    <li>Built-in router, portable</li>
+                    <li>Great for travel—connects anywhere</li>
+                </ul>
+            </div>
+            <button class="button" onclick="nextStep('kits', 'location')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
+        </div>
     </div>
 
     <!-- New mobile progress bar -->
@@ -126,6 +173,8 @@
             <li onclick="goToStep('installation')">Installation</li>
             <li onclick="goToStep('plan')">Plan</li>
             <li onclick="goToStep('summary')">Summary</li>
+            <li onclick="goToStep('services')">Services</li>
+            <li onclick="goToStep('kits')">Kits</li>
         </ul>
     </div>
 
