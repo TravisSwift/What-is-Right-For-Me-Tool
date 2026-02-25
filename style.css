@@ -1,4 +1,4 @@
-/* Base styles (mobile-first: assume small screens) */
+ /* Base styles (mobile-first: assume small screens) */
 body { font-family: 'Inter', Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
 .container { max-width: 800px; margin: auto; }
 .header { text-align: center; margin-bottom: 20px; color: #fff; }
@@ -31,8 +31,9 @@ p { color: #ddd; }
 /* New choices grid for single column */
 .choices-grid { display: flex; flex-direction: column; gap: 10px; } /* Tight spacing */
 
-/* New choice row for inline radios */
-.choice-row { display: flex; align-items: center; gap: 20px; background: #1a1a1a; padding: 10px; border-radius: 8px; }
+/* New choice row for inline radios aligned right */
+.choice-row { display: flex; align-items: center; gap: 10px; background: #1a1a1a; padding: 10px; border-radius: 8px; justify-content: flex-end; } /* Radios to the right */
+.choice-row .question-text { flex: 1; text-align: left; } /* Question text left-aligned */
 
 /* New choices container for initial options (stack on mobile, row on desktop) */
 .choices-container { display: flex; flex-direction: column; gap: 20px; }
@@ -51,5 +52,5 @@ p { color: #ddd; }
     .input { width: auto; } /* Inputs not full-width */
     .choice-card { display: inline-block; width: 30%; margin: 1.5%; } /* Side-by-side on desktop */
     .choices-container { flex-direction: row; justify-content: space-around; }
-    .choice-row { gap: 30px; } /* More space on desktop */
+    .choice-row { gap: 20px; } /* More space on desktop */
 }
