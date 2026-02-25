@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -84,4 +84,71 @@
             <div class="card">
                 <h3>Residential Services</h3>
                 <ul>
-                    <li>100 Mbps: $50/mo, Unlimited Data,
+                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi</li>
+                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi</li>
+                    <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Roam Services</h3>
+                <ul>
+                    <li>100GB: $50/mo, then low-speed</li>
+                    <li>Unlimited: $165/mo, in-motion OK</li>
+                </ul>
+            </div>
+            <button class="button" onclick="nextStep('services', 'choices')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
+        </div>
+
+        <!-- New Kits Step -->
+        <div id="step-kits" class="step">
+            <h2>View Kits</h2>
+            <div class="card">
+                <h3>Standard Gen 3 Kit</h3>
+                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
+                <ul>
+                    <li>Price: $349 (or promo)</li>
+                    <li>Dimensions: 23.4x15x1.5in</li>
+                    <li>Weight: 6.4lbs</li>
+                    <li>Wi-Fi 6 up to 3200 sq ft</li>
+                    <li>Plug & Play Setup</li>
+                    <li>Weather Resilient, >99.9% Uptime</li>
+                    <li>Components: Starlink, Kickstand, Gen 3 Router, Starlink Cable, AC Cable, Power Supply</li>
+                    <li>Designed for self-install: Plug it in, Point at sky</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Mini Kit</h3>
+                <img src="images/mini-kit.png" alt="Mini Kit">
+                <ul>
+                    <li>Price: $599</li>
+                    <li>Dimensions: 12x10x1.5in</li>
+                    <li>Weight: 2.5lbs</li>
+                    <li>Built-in router, portable</li>
+                    <li>Great for travel—connects anywhere</li>
+                </ul>
+            </div>
+            <button class="button" onclick="nextStep('kits', 'choices')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
+        </div>
+    </div>
+
+    <!-- New mobile progress bar -->
+    <div class="mobile-progress">
+        <div id="mobile-steps"></div>
+    </div>
+
+    <!-- Sidebar Progress (now hides on mobile) -->
+    <div class="sidebar">
+        <ul class="progress">
+            <li onclick="goToStep('intro')">Intro <img src="images/rocket-icon.png" alt="Rocket" class="rocket"></li>
+            <li onclick="goToStep('choices')">Choices</li>
+            <li onclick="goToStep('results')">Results</li>
+            <li onclick="goToStep('services')">Services</li>
+            <li onclick="goToStep('kits')">Kits</li>
+        </ul>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
