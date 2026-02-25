@@ -1,6 +1,6 @@
- const steps = ['intro', 'location', 'use-case', 'usage', 'equipment', 'installation', 'plan', 'summary', 'services', 'kits'];
+ const steps = ['intro', 'choices', 'results', 'services', 'kits'];
 let currentStep = 0;
-let userData = { address: '', useCase: '', usage: [], users: '', kit: '', plan: '', promo: '', fee: '' };
+let userData = { address: '', choices: [], people: '', devices: '', kit: '', plan: '', promo: '', fee: '' };
 
 function nextStep(current, next) {
     document.getElementById(`step-${current}`).classList.remove('active');
@@ -41,22 +41,46 @@ function loadData() {
     if (saved) userData = JSON.parse(saved);
 }
 
-function checkLocation() {
-    userData.address = document.getElementById('address').value;
-    let result = '';
-    // Placeholder simulation
-    const zip = userData.address.match(/\d{5}/)?.[0] || '';
-    if (zip.startsWith('9')) { // Simulate high-demand
-        userData.promo = 'No promo';
-        userData.fee = '$100 Congestion Fee (one-time, for high-demand area—helps manage network)';
-        result = 'High-demand area: Service available with fee. Plans from $80/month.';
-    } else { // Low-demand
-        userData.promo = '$0 Kit Rental (pay only shipping $20 + service)';
-        userData.fee = 'No fee';
-        result = 'Low-demand area: Service available with promo! Plans from $50/month.';
+// New function for quiz submit
+function submitQuiz() {
+    userData.choices = Array.from(document.querySelectorAll('input[name="choice"]:checked')).map(c => c.value);
+    userData.people = document.querySelector('select[name="people"]').value;
+    userData.devices = document.querySelector('select[name="devices"]').value;
+
+    // Simple logic to recommend (based on counts)
+    let stationaryScore = 0;
+    let mobileScore = 0;
+    userData.choices.forEach(choice => {
+        if (['work-from-home', 'video-calls', 'vpn', 'surfing'].includes(choice)) stationaryScore++;
+        if (['school-from-home', 'gaming', 'streaming'].includes(choice)) mobileScore++;
+    });
+
+    // Multipliers from drop-downs
+    const peopleNum = userData.people === 'more' ? 5 : parseInt(userData.people);
+    const devicesNum = parseInt(userData.devices.split('-')[0]); // Approximate
+
+    if (peopleNum > 3 || devicesNum > 3) stationaryScore += 1; // Favor Residential for high usage
+    if (stationaryScore > mobileScore) {
+        userData.kit = 'Standard Gen 3 Kit';
+        userData.plan = (peopleNum > 4 || devicesNum > 4) ? 'Residential MAX' : 'Residential Standard';
+    } else {
+        userData.kit = 'Starlink Mini Kit';
+        userData.plan = (mobileScore > 2) ? 'Roam Unlimited' : 'Roam 100GB';
     }
-    document.getElementById('location-result').innerHTML = `<p>${result}</p>`;
-    nextStep('location', 'use-case');
+
+    // Display recommendation
+    let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
+    document.getElementById('recommendation').innerHTML = html;
+
+    nextStep('choices', 'results');
+}
+
+// New mock for promo check
+function mockPromoCheck() {
+    const address = document.getElementById('results-address').value;
+    alert('In production: Check promotions for address: ' + address);
+    // Simulate result
+    document.getElementById('promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
 // New mock for services address check
@@ -65,61 +89,6 @@ function mockAddressCheck() {
     alert('In production: Redirect to Starlink availability checker with address: ' + address);
     // Simulate result
     document.getElementById('services-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
-}
-
-// Event listeners for radios (show cards)
-document.querySelectorAll('input[name="useCase"]').forEach(input => {
-    input.addEventListener('change', (e) => {
-        userData.useCase = e.target.value;
-        document.getElementById('residential-card').style.display = e.target.value === 'residential' ? 'block' : 'none';
-        document.getElementById('roam-card').style.display = e.target.value === 'roam' ? 'block' : 'none';
-    });
-});
-
-// Usage next: Collect checkboxes
-document.querySelectorAll('input[name="usage"]').forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-        userData.usage = Array.from(document.querySelectorAll('input[name="usage"]:checked')).map(c => c.value);
-    });
-});
-document.getElementById('users').addEventListener('change', (e) => userData.users = e.target.value);
-
-// Equipment recommendation
-function generateEquipment() {
-    let html = '';
-    if (userData.useCase === 'residential') {
-        userData.kit = 'Standard Gen 3 Kit ($349 or promo; 23.4x15x1.5in, 6.4lbs, Wi-Fi 6 up to 3200sq ft)';
-        html = `<div class="card">Recommended: ${userData.kit}<span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Versatile for home—better speeds.</span></span><img src="images/standard-dish.png" alt="Standard Kit"></div>`;
-    } else {
-        userData.kit = 'Starlink Mini Kit ($599, 12x10x1.5in, 2.5lbs, built-in router, portable)';
-        html = `<div class="card">Recommended: ${userData.kit}<span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Great for travel—connects anywhere.</span></span><img src="images/mini-kit.png" alt="Mini Kit"></div>`;
-    }
-    document.getElementById('equipment-cards').innerHTML = html;
-}
-
-// Plan recommendation
-function generatePlans() {
-    let html = '';
-    let basePrice = userData.fee.includes('$100') ? 80 : 50; // Simulate based on location
-    if (userData.useCase === 'residential') {
-        const highUsage = userData.usage.includes('gaming') || userData.usage.includes('streaming') || userData.users === '6+';
-        userData.plan = highUsage ? 'Residential MAX ($120/month, up to 400Mbps, unlimited)' : 'Residential Standard ($' + basePrice + '/month, 50-220Mbps, unlimited)';
-        html = `<div class="card">Recommended Plan: ${userData.plan}<span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">No data caps; pause with Standby Mode ($20/month).</span></span></div>`;
-    } else {
-        const highUsage = userData.usage.length > 2;
-        userData.plan = highUsage ? 'Roam Unlimited ($165/month, unlimited, in-motion OK)' : 'Roam 100GB ($50/month, then low-speed)';
-        html = `<div class="card">Recommended Plan: ${userData.plan}<span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Gaming on Roam: Playable (20-50ms), but spikes possible—fine for casual.</span></span></div>`;
-    }
-    document.getElementById('plan-cards').innerHTML = html;
-}
-
-// Summary
-function generateSummary() {
-    let html = `<p>Your Fit: ${userData.useCase.toUpperCase()} with ${userData.kit} and ${userData.plan}.</p>
-                <p>Promo/Fee: ${userData.promo} | ${userData.fee}</p>
-                <p>Total Est: Kit + Shipping + Service (30-day trial—risk-free!)</p>
-                <p>Hesitations? Speeds reliable, weather OK, support 24/7 via app.</p>`;
-    document.getElementById('summary-content').innerHTML = html;
 }
 
 function placeOrder() {

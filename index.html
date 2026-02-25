@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
             <!-- Initial three choices as cards with graphics -->
             <div class="choice-card">
                 <img src="images/quiz-graphic.png" alt="Quiz Graphic">
-                <button class="button" onclick="nextStep('intro', 'location')">1. What Kit is Right for Me Quiz</button>
+                <button class="button" onclick="nextStep('intro', 'choices')">1. What Kit is Right for Me Quiz</button>
             </div>
             <div class="choice-card">
                 <img src="images/services-graphic.png" alt="Services Graphic">
@@ -28,88 +28,41 @@
             </div>
         </div>
 
-        <!-- Steps -->
-        <div id="step-location" class="step">
-            <h2>Step 1: Your Location</h2>
-            <p>Enter your address or ZIP to check availability and pricing (varies by area due to network capacity).</p>
-            <div class="card">
-                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Why? Plans and promotions depend on your location—e.g., low-demand areas may have specials.</span></span>
-                <label>Address or ZIP:</label>
-                <input type="text" id="address" placeholder="e.g., 90210 or 123 Main St, Anytown">
+        <!-- New Quiz Choices Step -->
+        <div id="step-choices" class="step">
+            <h2>Help us determine what kit and service best meets your needs.</h2>
+            <p>Please check the choices that apply to you:</p>
+            <div class="choices-grid">
+                <div class="column residential">
+                    <h3>Residential Service</h3>
+                    <label><input type="checkbox" name="choice" value="work-from-home"> Work from Home</label>
+                    <label><input type="checkbox" name="choice" value="video-calls"> Video Calls</label>
+                    <label><input type="checkbox" name="choice" value="vpn"> You use a VPN</label>
+                    <label><input type="checkbox" name="choice" value="surfing"> Surfing the internet</label>
+                    <label>How many people: <select name="people"><option>1</option><option>2</option><option>3</option><option>4</option><option>more</option></select></label>
+                </div>
+                <div class="column roam">
+                    <h3>Roaming Service (On the go)</h3>
+                    <label><input type="checkbox" name="choice" value="school-from-home"> School from home</label>
+                    <label><input type="checkbox" name="choice" value="gaming"> Gaming</label>
+                    <label><input type="checkbox" name="choice" value="streaming"> Streaming TV</label>
+                    <label>How many devices: <select name="devices"><option>1-2</option><option>3-4</option><option>5 or more</option></select></label>
+                </div>
             </div>
-            <button class="button" onclick="checkLocation()">Next</button>
-            <div id="location-result"></div>
+            <button class="button" onclick="submitQuiz()">Submit</button>
         </div>
 
-        <div id="step-use-case" class="step">
-            <h2>Step 2: Your Main Use</h2>
-            <p>Select what best fits:</p>
-            <label><input type="radio" name="useCase" value="residential"> Stationary Residential (home/fixed location)</label>
-            <div class="card" style="display:none;" id="residential-card">
-                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Unlimited data for stable home use—great for families.</span></span>
-                <img src="images/standard-dish.png" alt="Standard Dish">
-            </div>
-            <label><input type="radio" name="useCase" value="roam"> On The Go (travel/RV/mobile)</label>
-            <div class="card" style="display:none;" id="roam-card">
-                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Portable access in 150+ countries; in-motion OK on Unlimited.</span></span>
-                <img src="images/mini-kit.png" alt="Mini Kit">
-            </div>
-            <button class="button" onclick="nextStep('use-case', 'usage')">Next</button>
+        <!-- New Results Step -->
+        <div id="step-results" class="step">
+            <h2>Our Recommendation</h2>
+            <div id="recommendation"></div>
+            <p>Enter your address to see what sales and promotions are available for you!</p>
+            <input type="text" id="results-address" placeholder="Enter your address">
+            <button class="button" onclick="mockPromoCheck()">Check Promotions</button>
+            <div id="promo-result"></div>
         </div>
 
-        <div id="step-usage" class="step">
-            <h2>Step 3: Your Usage</h2>
-            <p>Select all that apply:</p>
-            <div class="card">
-                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">Helps match bandwidth—e.g., gaming needs low latency.</span></span>
-                <label>How many people/devices? <select id="users"><option>1-2</option><option>3-5</option><option>6+</option></select></label>
-                <label><input type="checkbox" name="usage" value="work"> Work/school from home</label>
-                <label><input type="checkbox" name="usage" value="vpn"> Use VPN</label>
-                <label><input type="checkbox" name="usage" value="gaming"> Gaming (Note: Playable on Roam but may have spikes in-motion)</label>
-                <label><input type="checkbox" name="usage" value="streaming"> Streaming</label>
-                <label><input type="checkbox" name="usage" value="calls"> Video calls</label>
-            </div>
-            <button class="button" onclick="nextStep('usage', 'equipment')">Next</button>
-        </div>
-
-        <div id="step-equipment" class="step">
-            <h2>Step 4: Recommended Equipment</h2>
-            <div id="equipment-cards"></div>
-            <img src="images/gen3-router.png" alt="Gen 3 Router" class="equipment-image">
-            <button class="button" onclick="nextStep('equipment', 'installation')">Next</button>
-        </div>
-
-        <div id="step-installation" class="step">
-            <h2>Step 5: Installation Explained</h2>
-            <p>Starlink is easy to set up—90% of users self-install in 5-10 minutes. No tools needed!</p>
-            <img src="images/home-setup.png" alt="Installation Schematic" class="schematic">
-            <div class="card">
-                <span class="tooltip"><img src="images/info-icon.png" alt="Info" class="icon"><span class="tooltip-text">App guides pointing dish; resilient to rain/snow. Pro install $199+ if needed (select areas).</span></span>
-                <ol>
-                    <li>Download Starlink app.</li>
-                    <li>Find clear sky spot (no trees/buildings blocking).</li>
-                    <li>Point dish north, plug cable to router.</li>
-                    <li>Connect router to power—Wi-Fi starts!</li>
-                </ol>
-                <p>Worried? 30-day trial includes full hardware refund. Support via app if stuck.</p>
-            </div>
-            <button class="button" onclick="nextStep('installation', 'plan')">Next</button>
-        </div>
-
-        <div id="step-plan" class="step">
-            <h2>Step 6: Service Plan</h2>
-            <div id="plan-cards"></div>
-            <button class="button" onclick="nextStep('plan', 'summary')">Next</button>
-        </div>
-
-        <div id="step-summary" class="step">
-            <h2>Summary & Order</h2>
-            <div id="summary-content"></div>
-            <button class="button" onclick="placeOrder()">Place Order Now</button>
-            <p>After ordering, explore accessories like mounts or mesh to customize: <a href="#" onclick="alert('Link to shop.starlink.com/collections/accessories in production')">View Accessories</a></p>
-        </div>
-
-        <!-- New Services Step -->
+        <!-- Other Steps (services and kits remain the same) -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
             <p>Not all services are available in all areas. Enter your address to see what's available for you.</p>
@@ -131,11 +84,10 @@
                     <li>Unlimited: $165/mo, in-motion OK</li>
                 </ul>
             </div>
-            <button class="button" onclick="nextStep('services', 'location')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('services', 'choices')">Take the Quiz</button>
             <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
         </div>
 
-        <!-- New Kits Step -->
         <div id="step-kits" class="step">
             <h2>View Kits</h2>
             <div class="card">
@@ -163,7 +115,7 @@
                     <li>Great for travel—connects anywhere</li>
                 </ul>
             </div>
-            <button class="button" onclick="nextStep('kits', 'location')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('kits', 'choices')">Take the Quiz</button>
             <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
         </div>
     </div>
@@ -177,13 +129,8 @@
     <div class="sidebar">
         <ul class="progress">
             <li onclick="goToStep('intro')">Intro <img src="images/rocket-icon.png" alt="Rocket" class="rocket"></li>
-            <li onclick="goToStep('location')">Location</li>
-            <li onclick="goToStep('use-case')">Use Case</li>
-            <li onclick="goToStep('usage')">Usage</li>
-            <li onclick="goToStep('equipment')">Equipment</li>
-            <li onclick="goToStep('installation')">Installation</li>
-            <li onclick="goToStep('plan')">Plan</li>
-            <li onclick="goToStep('summary')">Summary</li>
+            <li onclick="goToStep('choices')">Choices</li>
+            <li onclick="goToStep('results')">Results</li>
             <li onclick="goToStep('services')">Services</li>
             <li onclick="goToStep('kits')">Kits</li>
         </ul>

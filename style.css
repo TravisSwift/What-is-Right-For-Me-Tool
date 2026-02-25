@@ -28,6 +28,11 @@ p { color: #ddd; }
 .choice-card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 20px 0; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
 .choice-card img { margin-bottom: 10px; }
 
+/* New choices grid for two columns */
+.choices-grid { display: grid; grid-template-columns: 1fr; gap: 20px; } /* Single column on mobile */
+.choices-grid .column { background: #1a1a1a; padding: 15px; border-radius: 8px; }
+.choices-grid h3 { text-align: center; }
+
 /* New mobile progress bar */
 .mobile-progress { display: block; text-align: center; padding: 10px; background: #1a1a1a; position: sticky; top: 0; z-index: 10; }
 #mobile-steps { display: flex; justify-content: center; gap: 5px; }
@@ -39,6 +44,7 @@ p { color: #ddd; }
     .sidebar { display: block; position: fixed; left: 20px; top: 100px; width: 150px; color: #fff; } /* Show sidebar on desktop */
     .mobile-progress { display: none; } /* Hide mobile bar on desktop */
     .button { width: auto; } /* Buttons not full-width on desktop */
-    input { width: auto; } /* Inputs not full-width */
+    .input { width: auto; } /* Inputs not full-width */
     .choice-card { display: inline-block; width: 30%; margin: 1.5%; } /* Side-by-side on desktop */
+    .choices-grid { grid-template-columns: 1fr 1fr; } /* Two columns on desktop */
 }
