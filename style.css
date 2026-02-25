@@ -44,6 +44,9 @@ p { color: #ddd; }
 #mobile-steps .dot { width: 10px; height: 10px; background: #555; border-radius: 50%; }
 #mobile-steps .dot.active { background: #00a3ff; }
 
+/* 3px border for initial choice buttons */
+.choice-button { border: 3px solid #00a3ff; }
+
 /* Media query for desktop (min-width 769px) – enhance layout */
 @media (min-width: 769px) {
     .sidebar { display: block; position: fixed; left: 20px; top: 100px; width: 150px; color: #fff; } /* Show sidebar on desktop */
