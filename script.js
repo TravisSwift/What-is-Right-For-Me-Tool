@@ -1,4 +1,4 @@
-const steps = ['intro', 'location', 'use-case', 'usage', 'equipment', 'installation', 'plan', 'summary', 'services', 'kits'];
+ const steps = ['intro', 'location', 'use-case', 'usage', 'equipment', 'installation', 'plan', 'summary', 'services', 'kits'];
 let currentStep = 0;
 let userData = { address: '', useCase: '', usage: [], users: '', kit: '', plan: '', promo: '', fee: '' };
 

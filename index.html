@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>What Starlink Kit Is Right For Me?</h1>
-            <p>Discover the best Starlink setup for your needs. Choose an option to start!</p>
-            <!-- Initial three choices -->
-            <button class="button" onclick="nextStep('intro', 'location')">1. What Kit is Right for Me Quiz</button>
-            <button class="button" onclick="nextStep('intro', 'services')">2. View the Services</button>
-            <button class="button" onclick="nextStep('intro', 'kits')">3. View the Kits</button>
+        <div id="step-intro" class="step active">
+            <div class="header">
+                <h1>What Starlink Kit Is Right For Me?</h1>
+                <p>Discover the best Starlink setup for your needs. Choose an option to start!</p>
+            </div>
+            <!-- Initial three choices as cards with graphics -->
+            <div class="choice-card">
+                <img src="images/quiz-graphic.png" alt="Quiz Graphic">
+                <button class="button" onclick="nextStep('intro', 'location')">1. What Kit is Right for Me Quiz</button>
+            </div>
+            <div class="choice-card">
+                <img src="images/services-graphic.png" alt="Services Graphic">
+                <button class="button" onclick="nextStep('intro', 'services')">2. View the Services</button>
+            </div>
+            <div class="choice-card">
+                <img src="images/kits-graphic.png" alt="Kits Graphic">
+                <button class="button" onclick="nextStep('intro', 'kits')">3. View the Kits</button>
+            </div>
         </div>
 
         <!-- Steps -->

@@ -1,4 +1,4 @@
-/* Base styles (mobile-first: assume small screens) */
+ /* Base styles (mobile-first: assume small screens) */
 body { font-family: 'Inter', Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
 .container { max-width: 800px; margin: auto; }
 .header { text-align: center; margin-bottom: 20px; color: #fff; }
@@ -24,6 +24,10 @@ ul { color: #ccc; list-style-type: disc; }
 h1, h2 { color: #fff; }
 p { color: #ddd; }
 
+/* New choice cards for initial options */
+.choice-card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 20px 0; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+.choice-card img { margin-bottom: 10px; }
+
 /* New mobile progress bar */
 .mobile-progress { display: block; text-align: center; padding: 10px; background: #1a1a1a; position: sticky; top: 0; z-index: 10; }
 #mobile-steps { display: flex; justify-content: center; gap: 5px; }
@@ -36,4 +40,5 @@ p { color: #ddd; }
     .mobile-progress { display: none; } /* Hide mobile bar on desktop */
     .button { width: auto; } /* Buttons not full-width on desktop */
     input { width: auto; } /* Inputs not full-width */
+    .choice-card { display: inline-block; width: 30%; margin: 1.5%; } /* Side-by-side on desktop */
 }
