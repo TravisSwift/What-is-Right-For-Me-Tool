@@ -47,6 +47,11 @@ function submitQuiz() {
     userData.people = document.querySelector('select[name="people"]').value;
     userData.devices = document.querySelector('select[name="devices"]').value;
 
+    if (userData.choices.length === 0) {
+        alert('You cannot provide results without making choices.');
+        return;
+    }
+
     // Simple logic to recommend (based on counts)
     let stationaryScore = 0;
     let mobileScore = 0;
