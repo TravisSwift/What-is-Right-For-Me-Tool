@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,38 +14,50 @@
                 <p>Discover the best Starlink setup for your needs. Choose an option to start!</p>
             </div>
             <!-- Initial three choices as cards with graphics -->
-            <div class="choice-card">
-                <img src="images/rocket-icon.png" alt="Quiz Graphic">
-                <button class="button" onclick="nextStep('intro', 'choices')">1. What Kit is Right for Me Quiz</button>
-            </div>
-            <div class="choice-card">
-                <img src="images/services-graphic.png" alt="Services Graphic">
-                <button class="button" onclick="nextStep('intro', 'services')">2. View the Services</button>
-            </div>
-            <div class="choice-card">
-                <img src="images/kits-graphic.png" alt="Kits Graphic">
-                <button class="button" onclick="nextStep('intro', 'kits')">3. View the Kits</button>
+            <div class="choices-container">
+                <div class="choice-card">
+                    <img src="images/quiz-graphic.png" alt="Quiz Graphic">
+                    <button class="button" onclick="nextStep('intro', 'choices')">1. What Kit is Right for Me Quiz</button>
+                </div>
+                <div class="choice-card">
+                    <img src="images/services-graphic.png" alt="Services Graphic">
+                    <button class="button" onclick="nextStep('intro', 'services')">2. View the Services</button>
+                </div>
+                <div class="choice-card">
+                    <img src="images/kits-graphic.png" alt="Kits Graphic">
+                    <button class="button" onclick="nextStep('intro', 'kits')">3. View the Kits</button>
+                </div>
             </div>
         </div>
 
-        <!-- New Quiz Choices Step -->
+        <!-- Quiz Choices Step (single column, inline radios) -->
         <div id="step-choices" class="step">
             <h2>Help us determine what kit and service best meets your needs.</h2>
             <p>Please check the choices that apply to you:</p>
             <div class="choices-grid">
-                <div class="column residential">
-                    <h3>Residential Service</h3>
-                    <label><input type="checkbox" name="choice" value="work-from-home"> Work from Home</label>
-                    <label><input type="checkbox" name="choice" value="video-calls"> Video Calls</label>
-                    <label><input type="checkbox" name="choice" value="vpn"> You use a VPN</label>
+                <div class="choice-row">
+                    <label><input type="radio" name="service" value="residential"> Residential service</label>
+                    <label><input type="radio" name="service" value="roam"> Roaming Service (On the go)</label>
+                </div>
+                <div class="choice-row">
+                    <label><input type="radio" name="work-school" value="work-from-home"> Work from Home</label>
+                    <label><input type="radio" name="work-school" value="school-from-home"> School from home</label>
+                </div>
+                <div class="choice-row">
+                    <label><input type="radio" name="calls-gaming" value="video-calls"> Video Calls</label>
+                    <label><input type="radio" name="calls-gaming" value="gaming"> Gaming</label>
+                </div>
+                <div class="choice-row">
+                    <label><input type="radio" name="vpn-streaming" value="vpn"> You use a VPN</label>
+                    <label><input type="radio" name="vpn-streaming" value="streaming"> Streaming TV</label>
+                </div>
+                <div class="choice-row">
                     <label><input type="checkbox" name="choice" value="surfing"> Surfing the internet</label>
+                </div>
+                <div class="choice-row">
                     <label>How many people: <select name="people"><option>1</option><option>2</option><option>3</option><option>4</option><option>more</option></select></label>
                 </div>
-                <div class="column roam">
-                    <h3>Roaming Service (On the go)</h3>
-                    <label><input type="checkbox" name="choice" value="school-from-home"> School from home</label>
-                    <label><input type="checkbox" name="choice" value="gaming"> Gaming</label>
-                    <label><input type="checkbox" name="choice" value="streaming"> Streaming TV</label>
+                <div class="choice-row">
                     <label>How many devices: <select name="devices"><option>1-2</option><option>3-4</option><option>5 or more</option></select></label>
                 </div>
             </div>
@@ -62,7 +74,7 @@
             <div id="promo-result"></div>
         </div>
 
-        <!-- Other Steps (services and kits remain the same) -->
+        <!-- New Services Step -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
             <p>Not all services are available in all areas. Enter your address to see what's available for you.</p>
@@ -72,70 +84,4 @@
             <div class="card">
                 <h3>Residential Services</h3>
                 <ul>
-                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi</li>
-                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi</li>
-                    <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Roam Services</h3>
-                <ul>
-                    <li>100GB: $50/mo, then low-speed</li>
-                    <li>Unlimited: $165/mo, in-motion OK</li>
-                </ul>
-            </div>
-            <button class="button" onclick="nextStep('services', 'choices')">Take the Quiz</button>
-            <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
-        </div>
-
-        <div id="step-kits" class="step">
-            <h2>View Kits</h2>
-            <div class="card">
-                <h3>Standard Gen 3 Kit</h3>
-                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
-                <ul>
-                    <li>Price: $349 (or promo)</li>
-                    <li>Dimensions: 23.4x15x1.5in</li>
-                    <li>Weight: 6.4lbs</li>
-                    <li>Wi-Fi 6 up to 3200 sq ft</li>
-                    <li>Plug & Play Setup</li>
-                    <li>Weather Resilient, >99.9% Uptime</li>
-                    <li>Components: Starlink, Kickstand, Gen 3 Router, Starlink Cable, AC Cable, Power Supply</li>
-                    <li>Designed for self-install: Plug it in, Point at sky</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Mini Kit</h3>
-                <img src="images/mini-kit.png" alt="Mini Kit">
-                <ul>
-                    <li>Price: $599</li>
-                    <li>Dimensions: 12x10x1.5in</li>
-                    <li>Weight: 2.5lbs</li>
-                    <li>Built-in router, portable</li>
-                    <li>Great for travel—connects anywhere</li>
-                </ul>
-            </div>
-            <button class="button" onclick="nextStep('kits', 'choices')">Take the Quiz</button>
-            <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
-        </div>
-    </div>
-
-    <!-- New mobile progress bar -->
-    <div class="mobile-progress">
-        <div id="mobile-steps"></div>
-    </div>
-
-    <!-- Sidebar Progress (now hides on mobile) -->
-    <div class="sidebar">
-        <ul class="progress">
-            <li onclick="goToStep('intro')">Intro <img src="images/rocket-icon.png" alt="Rocket" class="rocket"></li>
-            <li onclick="goToStep('choices')">Choices</li>
-            <li onclick="goToStep('results')">Results</li>
-            <li onclick="goToStep('services')">Services</li>
-            <li onclick="goToStep('kits')">Kits</li>
-        </ul>
-    </div>
-
-    <script src="script.js" defer></script>
-</body>
-</html>
+                    <li>100 Mbps: $50/mo, Unlimited Data,
