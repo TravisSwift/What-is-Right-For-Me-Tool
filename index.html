@@ -30,34 +30,46 @@
             </div>
         </div>
 
-        <!-- Quiz Choices Step (single column, one question per line in one div) -->
+        <!-- Quiz Choices Step (single column, matching image layout) -->
         <div id="step-choices" class="step">
             <h2>Help us determine what kit and service best meets your needs.</h2>
             <p>Please check the choices that apply to you:</p>
             <div class="choices-group">
                 <div class="choice-row">
-                    <span class="question-text">Service Type:</span>
-                    <label><input type="radio" name="service" value="residential"> Residential service</label>
-                    <label><input type="radio" name="service" value="roam"> Roaming Service (On the go)</label>
+                    <span class="question-text">Residential service</span>
+                    <label><input type="checkbox" name="choice" value="residential"></label>
                 </div>
                 <div class="choice-row">
-                    <span class="question-text">Work/School:</span>
-                    <label><input type="radio" name="work-school" value="work-from-home"> Work from Home</label>
-                    <label><input type="radio" name="work-school" value="school-from-home"> School from home</label>
+                    <span class="question-text">Roaming Service (On the go)</span>
+                    <label><input type="checkbox" name="choice" value="roam"></label>
                 </div>
                 <div class="choice-row">
-                    <span class="question-text">Calls/Gaming:</span>
-                    <label><input type="radio" name="calls-gaming" value="video-calls"> Video Calls</label>
-                    <label><input type="radio" name="calls-gaming" value="gaming"> Gaming</label>
+                    <span class="question-text">Work from Home</span>
+                    <label><input type="checkbox" name="choice" value="work-from-home"></label>
                 </div>
                 <div class="choice-row">
-                    <span class="question-text">VPN/Streaming:</span>
-                    <label><input type="radio" name="vpn-streaming" value="vpn"> You use a VPN</label>
-                    <label><input type="radio" name="vpn-streaming" value="streaming"> Streaming TV</label>
+                    <span class="question-text">School from home</span>
+                    <label><input type="checkbox" name="choice" value="school-from-home"></label>
                 </div>
                 <div class="choice-row">
-                    <span class="question-text">Surfing:</span>
-                    <label><input type="checkbox" name="choice" value="surfing"> Surfing the internet</label>
+                    <span class="question-text">Video Calls</span>
+                    <label><input type="checkbox" name="choice" value="video-calls"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Gaming</span>
+                    <label><input type="checkbox" name="choice" value="gaming"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">You use a VPN</span>
+                    <label><input type="checkbox" name="choice" value="vpn"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Streaming TV</span>
+                    <label><input type="checkbox" name="choice" value="streaming"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Surfing the internet</span>
+                    <label><input type="checkbox" name="choice" value="surfing"></label>
                 </div>
                 <div class="choice-row">
                     <span class="question-text">How many people:</span>
