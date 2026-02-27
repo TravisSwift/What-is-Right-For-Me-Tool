@@ -44,38 +44,43 @@ function loadData() {
 // New function for quiz submit
 function submitQuiz() {
     userData.choices = [];
-    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => userData.choices.push(radio.value));
-    const surfingChecked = document.querySelector('input[value="surfing"]:checked');
-    if (surfingChecked) userData.choices.push('surfing');
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => userData.choices.push(checkbox.value));
 
     if (userData.choices.length === 0) {
         alert('You cannot provide results without making choices.');
         return;
     }
 
-    // Simple logic to recommend (based on counts)
+    // New logic as agreed
     let stationaryScore = 0;
     let mobileScore = 0;
+    let isRoam = userData.choices.includes('roam');
+    let isResidential = userData.choices.includes('residential');
     userData.choices.forEach(choice => {
-        if (['residential', 'work-from-home', 'video-calls', 'vpn', 'surfing'].includes(choice)) stationaryScore++;
-        if (['roam', 'school-from-home', 'gaming', 'streaming'].includes(choice)) mobileScore++;
+        if (['work-from-home', 'video-calls', 'vpn', 'surfing'].includes(choice)) stationaryScore++;
+        if (['school-from-home', 'gaming', 'streaming'].includes(choice)) mobileScore++;
     });
 
-    // Multipliers from radios (people/devices now radios)
-    const peopleNum = userData.people === 'more' ? 5 : parseInt(userData.people || 0);
-    const devicesNum = parseInt(userData.devices?.split('-')[0] || 0);
-
-    if (peopleNum > 3 || devicesNum > 3) stationaryScore += 1; // Favor Residential for high usage
-
-    if (stationaryScore > mobileScore) {
-        userData.kit = 'Standard Gen 3 Kit';
-        userData.plan = (peopleNum > 4 || devicesNum > 4) ? 'Residential MAX' : 'Residential Standard';
-    } else if (mobileScore > stationaryScore) {
-        userData.kit = 'Starlink Mini Kit'; // Mini only for Roam
+    // Service determination
+    if (isRoam) {
         userData.plan = (mobileScore > 2) ? 'Roam Unlimited' : 'Roam 100GB';
+        userData.kit = (mobileScore > stationaryScore) ? 'Starlink Mini Kit' : 'Standard Gen 3 Kit'; // Mini if more mobile, else Standard
+        if (isResidential) {
+            // Hybrid note
+            document.getElementById('recommendation').innerHTML += '<p>Note: You selected both services. Standard Kit works for both; consider Residential base with Mini add-on for portability.</p>';
+        }
     } else {
-        userData.kit = 'Standard Gen 3 Kit'; // Versatile for both
-        userData.plan = 'Roam Unlimited'; // Default to Roam if tie, but Gen 3
+        userData.plan = (stationaryScore > 2) ? 'Residential MAX' : 'Residential Standard';
+        userData.kit = 'Standard Gen 3 Kit';
+    }
+
+    // People/devices as radios (assuming one selected or default to low)
+    const peopleNum = userData.people === 'more' ? 5 : parseInt(userData.people || 1); // Default low if skipped
+    const devicesNum = parseInt(userData.devices?.split('-')[0] || 1); // Default low
+
+    if (peopleNum > 4 || devicesNum > 4) {
+        if (userData.plan.includes('Residential')) userData.plan = 'Residential MAX';
+        if (userData.plan.includes('Roam')) userData.plan = 'Roam Unlimited';
     }
 
     // Display recommendation
@@ -99,6 +104,14 @@ function mockAddressCheck() {
     alert('In production: Redirect to Starlink availability checker with address: ' + address);
     // Simulate result
     document.getElementById('services-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
+}
+
+// New mock for kits promo check
+function mockPromoCheckKits() {
+    const address = document.getElementById('kits-address').value;
+    alert('In production: Check promotions for address: ' + address);
+    // Simulate result
+    document.getElementById('kits-promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
 function placeOrder() {

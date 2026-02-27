@@ -38,13 +38,13 @@ p { color: #ddd; }
 .choices-container { display: flex; flex-direction: column; gap: 20px; }
 
 /* New mobile progress bar */
-.mobile-progress { display: block; text-align: center; padding: 10px; background: #1a1a1a; position: sticky; top: 0; z-index: 10; }
-#mobile-steps { display: flex; justify-content: center; gap: 5px; }
-#mobile-steps .dot { width: 10px; height: 10px; background: #555; border-radius: 50%; }
-#mobile-steps .dot.active { background: #00a3ff; }
+.mobile-progress { display: none; } /* Removed dots entirely */
 
 /* 3px border for initial choice buttons */
 .choice-button { border: 3px solid #00a3ff; }
+
+/* Discreet back button */
+.back-button { background: transparent; color: #ccc; border: none; text-decoration: underline; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
 
 /* Media query for desktop (min-width 769px) – enhance layout */
 @media (min-width: 769px) {
