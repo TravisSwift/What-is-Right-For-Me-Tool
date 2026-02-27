@@ -122,9 +122,7 @@
         <!-- New Services Step -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
-            <p>Not all services are available in all areas. Enter your address to see what's available for you.</p>
-            <input type="text" id="services-address" placeholder="Enter address for availability check">
-            <button class="button" onclick="mockAddressCheck()">Check Availability</button>
+            <p>Not all services are available in all areas.</p>
             <div id="services-result"></div>
             <div class="card">
                 <img src="images/residential-graphic.png" alt="Residential Graphic">
@@ -134,6 +132,10 @@
                     <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi (Not available in all areas)</li>
                     <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
                 </ul>
+                <p>Enter your address to see what's available for you.</p>
+                <input type="text" id="residential-address" placeholder="Enter address for availability check">
+                <button class="button" onclick="mockAddressCheckResidential()">Check Availability</button>
+                <div id="residential-result"></div>
             </div>
             <div class="card">
                 <img src="images/roam-graphic.png" alt="Roam Graphic">
@@ -142,6 +144,10 @@
                     <li>100GB: $50/mo, then low-speed</li>
                     <li>Unlimited: $165/mo, in-motion OK</li>
                 </ul>
+                <p>Enter your address to see what's available for you.</p>
+                <input type="text" id="roam-address" placeholder="Enter address for availability check">
+                <button class="button" onclick="mockAddressCheckRoam()">Check Availability</button>
+                <div id="roam-result"></div>
             </div>
             <button class="button" onclick="nextStep('services', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
@@ -153,7 +159,7 @@
             <h2>View Kits</h2>
             <div class="card">
                 <h3>Standard Gen 3 Kit</h3>
-                <img src="images/home-setup.png" alt="Standard Gen 3 Kit">
+                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
                 <ul>
                     <li>Price: $349 (or promo)</li>
                     <li>Dimensions: 23.4x15x1.5in</li>
@@ -168,7 +174,7 @@
             </div>
             <div class="card">
                 <h3>Mini Kit</h3>
-                <img src="images/Starlink_Mini.png" alt="Mini Kit">
+                <img src="images/mini-kit.png" alt="Mini Kit">
                 <ul>
                     <li>Price: $599</li>
                     <li>Dimensions: 12x10x1.5in</li>

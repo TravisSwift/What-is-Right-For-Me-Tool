@@ -105,12 +105,20 @@ function mockPromoCheck() {
     document.getElementById('promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
-// New mock for services address check
-function mockAddressCheck() {
-    const address = document.getElementById('services-address').value;
+// New mock for residential address check
+function mockAddressCheckResidential() {
+    const address = document.getElementById('residential-address').value;
     alert('In production: Redirect to Starlink availability checker with address: ' + address);
     // Simulate result
-    document.getElementById('services-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
+    document.getElementById('residential-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
+}
+
+// New mock for roam address check
+function mockAddressCheckRoam() {
+    const address = document.getElementById('roam-address').value;
+    alert('In production: Redirect to Starlink availability checker with address: ' + address);
+    // Simulate result
+    document.getElementById('roam-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
 }
 
 // New mock for kits promo check
