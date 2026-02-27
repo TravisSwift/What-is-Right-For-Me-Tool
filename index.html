@@ -72,6 +72,10 @@
                     <label><input type="checkbox" name="choice" value="surfing"></label>
                 </div>
                 <div class="choice-row">
+                    <span class="question-text">Business</span>
+                    <label><input type="checkbox" name="choice" value="business"></label>
+                </div>
+                <div class="choice-row">
                     <span class="question-text">How many people:</span>
                     <label><input type="radio" name="people" value="1"> 1</label>
                     <label><input type="radio" name="people" value="2"> 2</label>
@@ -106,6 +110,14 @@
             <button class="back-button" onclick="goToStep('choices')">Back</button>
         </div>
 
+        <!-- New Business Step -->
+        <div id="step-business" class="step">
+            <h2>Starlink Business</h2>
+            <p>Starlink Business offers high-speed, low-latency internet for enterprises. Benefits: Priority support, higher speeds, dedicated hardware.</p>
+            <a href="https://www.starlink.com/business" target="_blank">Visit business.starlink.com for more</a>
+            <button class="back-button" onclick="goToStep('choices')">Back</button>
+        </div>
+
         <!-- New Services Step -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
@@ -117,8 +129,8 @@
                 <img src="images/residential-graphic.png" alt="Residential Graphic">
                 <h3>Residential Services</h3>
                 <ul>
-                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi</li>
-                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi</li>
+                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi (Not available in all areas)</li>
+                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi (Not available in all areas)</li>
                     <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
                 </ul>
             </div>

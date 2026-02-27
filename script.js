@@ -1,4 +1,4 @@
- const steps = ['intro', 'choices', 'results', 'services', 'kits'];
+ const steps = ['intro', 'choices', 'results', 'services', 'kits', 'business'];
 let currentStep = 0;
 let userData = { address: '', choices: [], people: '', devices: '', kit: '', plan: '', promo: '', fee: '' };
 
@@ -56,10 +56,16 @@ function submitQuiz() {
     let mobileScore = 0;
     let isRoam = userData.choices.includes('roam');
     let isResidential = userData.choices.includes('residential');
+    let isBusiness = userData.choices.includes('business');
     userData.choices.forEach(choice => {
         if (['work-from-home', 'video-calls', 'vpn', 'surfing'].includes(choice)) stationaryScore++;
         if (['school-from-home', 'gaming', 'streaming'].includes(choice)) mobileScore++;
     });
+
+    if (isBusiness) {
+        nextStep('choices', 'business');
+        return;
+    }
 
     // Service determination
     if (isRoam) {
@@ -70,7 +76,7 @@ function submitQuiz() {
             document.getElementById('recommendation').innerHTML += '<p>Note: You selected both services. Standard Kit works for both; consider Residential base with Mini add-on for portability.</p>';
         }
     } else {
-        userData.plan = (stationaryScore > 2) ? 'Residential MAX' : 'Residential Standard';
+        userData.plan = 'Residential MAX';
         userData.kit = 'Standard Gen 3 Kit';
     }
 
@@ -85,6 +91,7 @@ function submitQuiz() {
 
     // Display recommendation
     let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
+    html += '<p>200 Mbps and 100 Mbps services are available in limited areas. Not available in all areas. Enter your address to check availability.</p>';
     document.getElementById('recommendation').innerHTML = html;
 
     nextStep('choices', 'results');
