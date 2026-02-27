@@ -100,6 +100,9 @@
             <input type="text" id="results-address" placeholder="Enter your address">
             <button class="button" onclick="mockPromoCheck()">Check for promotions</button>
             <div id="promo-result"></div>
+            <button class="button" onclick="nextStep('results', 'choices')">What Starlink Is Right For Me?</button>
+            <button class="button" onclick="nextStep('results', 'services')">View Services</button>
+            <button class="button" onclick="nextStep('results', 'kits')">View Kits</button>
             <button class="back-button" onclick="goToStep('choices')">Back</button>
         </div>
 
@@ -127,7 +130,7 @@
                     <li>Unlimited: $165/mo, in-motion OK</li>
                 </ul>
             </div>
-            <button class="button" onclick="nextStep('services', 'choices')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('services', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
@@ -164,15 +167,10 @@
             <input type="text" id="kits-address" placeholder="Enter your address">
             <button class="button" onclick="mockPromoCheckKits()">Check for promotions</button>
             <div id="kits-promo-result"></div>
-            <button class="button" onclick="nextStep('kits', 'choices')">Take the Quiz</button>
+            <button class="button" onclick="nextStep('kits', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
-    </div>
-
-    <!-- New mobile progress bar -->
-    <div class="mobile-progress">
-        <div id="mobile-steps"></div>
     </div>
 
     <script src="script.js" defer></script>
