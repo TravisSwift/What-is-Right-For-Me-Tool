@@ -112,6 +112,7 @@
 
         <!-- New Business Step -->
         <div id="step-business" class="step">
+            <img src="images/business-graphic.png" alt="Business Graphic">
             <h2>Starlink Business</h2>
             <p>Starlink Business offers high-speed, low-latency internet for enterprises. Benefits: Priority support, higher speeds, dedicated hardware.</p>
             <a href="https://www.starlink.com/business" target="_blank">Visit business.starlink.com for more</a>
@@ -152,7 +153,7 @@
             <h2>View Kits</h2>
             <div class="card">
                 <h3>Standard Gen 3 Kit</h3>
-                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
+                <img src="images/home-setup.png" alt="Standard Gen 3 Kit">
                 <ul>
                     <li>Price: $349 (or promo)</li>
                     <li>Dimensions: 23.4x15x1.5in</li>
@@ -163,10 +164,11 @@
                     <li>Components: Starlink, Kickstand, Gen 3 Router, Starlink Cable, AC Cable, Power Supply</li>
                     <li>Designed for self-install: Plug it in, Point at sky</li>
                 </ul>
+                <button class="button" onclick="nextStep('kits', 'installation')">Installation</button>
             </div>
             <div class="card">
                 <h3>Mini Kit</h3>
-                <img src="images/mini-kit.png" alt="Mini Kit">
+                <img src="images/Starlink_Mini.png" alt="Mini Kit">
                 <ul>
                     <li>Price: $599</li>
                     <li>Dimensions: 12x10x1.5in</li>
@@ -182,6 +184,26 @@
             <button class="button" onclick="nextStep('kits', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
             <button class="back-button" onclick="goToStep('intro')">Back</button>
+        </div>
+
+        <!-- New Installation Step -->
+        <div id="step-installation" class="step">
+            <h2>Installation</h2>
+            <p>Professional Installation available in most states, exact prices and availability shown during checkout.</p>
+            <div class="card">
+                <h3>How Does Starlink Work</h3>
+                <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
+                <p>The dish is placed outside with a clear view of the sky, the Starlink cable runs into the home, attaching to the Router that broadcasts the Wi-Fi and powers the kit.</p>
+            </div>
+            <div class="card">
+                <h3>Self Install</h3>
+                <img src="images/self-install.png" alt="Self Install Graphic">
+                <p>Starlink is designed for self-installation. The kit includes everything you need to get connected in minutes.</p>
+            </div>
+            <button class="button" onclick="nextStep('installation', 'choices')">What Starlink Is Right For Me?</button>
+            <button class="button" onclick="nextStep('installation', 'kits')">View Kits</button>
+            <button class="button" onclick="nextStep('installation', 'services')">View Services</button>
+            <button class="back-button" onclick="goToStep('kits')">Back</button>
         </div>
     </div>
 

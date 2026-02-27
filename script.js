@@ -1,4 +1,4 @@
- const steps = ['intro', 'choices', 'results', 'services', 'kits', 'business'];
+ const steps = ['intro', 'choices', 'results', 'services', 'kits', 'business', 'installation'];
 let currentStep = 0;
 let userData = { address: '', choices: [], people: '', devices: '', kit: '', plan: '', promo: '', fee: '' };
 
@@ -70,10 +70,10 @@ function submitQuiz() {
     // Service determination
     if (isRoam) {
         userData.plan = (mobileScore > 2) ? 'Roam Unlimited' : 'Roam 100GB';
-        userData.kit = (mobileScore > stationaryScore) ? 'Starlink Mini Kit' : 'Standard Gen 3 Kit'; // Mini if more mobile, else Standard
+        userData.kit = (mobileScore > stationaryScore) ? 'Mini Kit' : 'Standard Gen 3 Kit'; // Mini if more mobile, else Standard
         if (isResidential) {
             // Hybrid note
-            document.getElementById('recommendation').innerHTML += '<p>Note: You selected both services. Standard Kit works for both; consider Residential base with Mini add-on for portability.</p>';
+            document.getElementById('recommendation').innerHTML += '<p>Note: You selected both services. Standard Gen 3 Kit works for both; consider Residential base with Mini add-on for portability.</p>';
         }
     } else {
         userData.plan = 'Residential MAX';
