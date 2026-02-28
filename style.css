@@ -1,24 +1,14 @@
- /* Base styles (mobile-first: assume small screens) */
+/* Base styles (mobile-first) */
 body { font-family: 'Inter', Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
 .container { max-width: 800px; margin: auto; }
 .header { text-align: center; margin-bottom: 20px; color: #fff; }
 .step { display: none; background: #000; }
 .active { display: block; }
-.button { background: #00a3ff; color: #000; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%; } /* Full-width on mobile */
+.button { background: #00a3ff; color: #000; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%; }
 .button:hover { background: #008bd4; }
-.card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 10px 0; border-radius: 8px; position: relative; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.tooltip { position: relative; display: inline-block; cursor: help; }
-.tooltip .icon { width: 16px; height: 16px; filter: invert(1); }
-.tooltip .tooltip-text { display: none; position: absolute; background: #333; border: 1px solid #555; color: #fff; padding: 10px; width: 200px; z-index: 1; top: 20px; right: 0; border-radius: 4px; }
-.tooltip:hover .tooltip-text { display: block; }
-.sidebar { display: none; }
-.progress { list-style: none; padding: 0; }
-.progress li { margin: 10px 0; cursor: pointer; }
-.progress li.active { font-weight: bold; color: #00a3ff; }
-.rocket { width: 24px; height: 24px; transition: transform 0.5s; filter: brightness(1.2); }
+.card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 input, label { display: block; margin: 10px 0; color: #fff; }
 input { background: #333; border: 1px solid #555; color: #fff; padding: 8px; border-radius: 4px; width: 100%; }
-.schematic, .equipment-image { max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px; }
 img { max-width: 100%; height: auto; border-radius: 4px; }
 ul { color: #ccc; list-style-type: disc; }
 h1, h2 { color: #fff; }
@@ -35,34 +25,29 @@ p { color: #ddd; }
 /* Choices container */
 .choices-container { display: flex; flex-direction: column; gap: 20px; }
 
-/* Mobile progress bar (removed) */
+/* Mobile progress bar removed */
 .mobile-progress { display: none; }
 
-/* 3px border for initial choice buttons */
+/* 3px border on main choice buttons */
 .choice-button { border: 3px solid #00a3ff; }
 
-/* Discreet back button */
+/* Back button */
 .back-button { background: transparent; color: #ccc; border: none; text-decoration: underline; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
 
-/* FORCE 2px black space between ALL consecutive blue buttons on every page */
+/* 2px black space between ALL consecutive blue buttons */
 .step .button + .button {
     margin-top: 2px !important;
 }
 
-/* Extra safety for the Results page (fixes the exact issue you saw) */
-#step-results .button + .button {
-    margin-top: 2px !important;
+/* Extra fix for Recommendation page */
+#step-results .button {
+    margin-bottom: 2px !important;
 }
 
-/* Media query for desktop */
+/* Desktop enhancements */
 @media (min-width: 769px) {
     .button { width: auto; }
-    .input { width: auto; }
     .choice-card { display: inline-block; width: 30%; margin: 1.5%; }
     .choices-container { flex-direction: row; justify-content: space-around; }
     .choice-row { gap: 20px; }
-}
-
-#step-results .button {
-    margin-bottom: 2px;
 }

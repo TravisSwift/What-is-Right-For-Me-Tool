@@ -12,26 +12,20 @@ function nextStep(current, next) {
 }
 
 function goToStep(step) {
-    steps.forEach(s => document.getElementById(`step-${s}`).classList.remove('active'));
-    document.getElementById(`step-${step}`).classList.add('active');
-    currentStep = steps.indexOf(step);
-    updateProgress();
+    steps.forEach(s => {
+        const el = document.getElementById(`step-${s}`);
+        if (el) el.classList.remove('active');
+    });
+    const target = document.getElementById(`step-${step}`);
+    if (target) {
+        target.classList.add('active');
+        currentStep = steps.indexOf(step);
+        updateProgress();
+    }
 }
 
 function updateProgress() {
-    document.querySelectorAll('.progress li').forEach((li, i) => {
-        li.classList.toggle('active', i <= currentStep);
-        if (i === currentStep && li.querySelector('.rocket')) {
-            li.querySelector('.rocket').style.transform = 'rotate(45deg)';
-        }
-    });
-
-    // Update mobile progress dots
-    let dotsHtml = '';
-    steps.forEach((_, i) => {
-        dotsHtml += `<div class="dot ${i <= currentStep ? 'active' : ''}"></div>`;
-    });
-    document.getElementById('mobile-steps').innerHTML = dotsHtml;
+    // No mobile dots
 }
 
 function saveData() {
@@ -43,7 +37,7 @@ function loadData() {
     if (saved) userData = JSON.parse(saved);
 }
 
-// Quiz submit with updated logic
+// Quiz submit (Residential always wins unless "roam" is chosen)
 function submitQuiz() {
     userData.choices = [];
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => userData.choices.push(cb.value));
@@ -68,7 +62,6 @@ function submitQuiz() {
         if (['roam', 'school-from-home', 'gaming', 'streaming'].includes(choice)) mobileScore++;
     });
 
-    // Service & Kit logic (Residential always outweighs Roam unless "roam" is explicitly chosen)
     if (isRoam) {
         userData.plan = (mobileScore > 2) ? 'Roam Unlimited' : 'Roam 100GB';
         userData.kit = (mobileScore > stationaryScore) ? 'Mini Kit' : 'Standard Gen 3 Kit';
@@ -77,16 +70,7 @@ function submitQuiz() {
         userData.kit = 'Standard Gen 3 Kit';
     }
 
-    // People / Devices (default low if skipped)
-    const peopleNum = userData.people === 'more' ? 5 : parseInt(userData.people || 1);
-    const devicesNum = parseInt(userData.devices?.split('-')[0] || 1);
-
-    if (peopleNum > 4 || devicesNum > 4) {
-        if (userData.plan.includes('Residential')) userData.plan = 'Residential MAX';
-        if (userData.plan.includes('Roam')) userData.plan = 'Roam Unlimited';
-    }
-
-    // Display recommendation
+    // Display
     let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
     html += '<p>200 Mbps and 100 Mbps services are available in limited areas. Not available in all areas. Enter your address to check availability.</p>';
     document.getElementById('recommendation').innerHTML = html;
@@ -94,7 +78,7 @@ function submitQuiz() {
     nextStep('choices', 'results');
 }
 
-// Mock promo checks
+// Mock functions (unchanged)
 function mockPromoCheck() {
     const address = document.getElementById('results-address').value;
     alert('In production: Check promotions for address: ' + address);
@@ -113,12 +97,6 @@ function mockPromoCheckMini() {
     document.getElementById('mini-promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
-function mockPromoCheckKits() {
-    const address = document.getElementById('kits-address').value;
-    alert('In production: Check promotions for address: ' + address);
-    document.getElementById('kits-promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
-}
-
 function mockAddressCheck() {
     const address = document.getElementById('services-address').value;
     alert('In production: Redirect to Starlink availability checker with address: ' + address);
@@ -135,5 +113,5 @@ loadData();
 updateProgress();
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Event listeners already attached in HTML
+    // All buttons are already wired in HTML
 });
