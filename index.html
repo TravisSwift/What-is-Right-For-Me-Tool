@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,13 +32,88 @@
 
         <!-- Quiz -->
         <div id="step-choices" class="step">
-            <!-- (unchanged from last version – checkboxes, one per line) -->
-            <!-- ... (same as previous) ... -->
+            <h2>Help us determine what kit and service best meets your needs.</h2>
+            <p>Please check the choices that apply to you:</p>
+            <div class="choices-group">
+                <div class="choice-row"><span class="question-text">Residential service</span><label><input type="checkbox" name="choice" value="residential"></label></div>
+                <div class="choice-row"><span class="question-text">Roaming Service (On the go)</span><label><input type="checkbox" name="choice" value="roam"></label></div>
+                <div class="choice-row"><span class="question-text">Work from Home</span><label><input type="checkbox" name="choice" value="work-from-home"></label></div>
+                <div class="choice-row"><span class="question-text">School from home</span><label><input type="checkbox" name="choice" value="school-from-home"></label></div>
+                <div class="choice-row"><span class="question-text">Video Calls</span><label><input type="checkbox" name="choice" value="video-calls"></label></div>
+                <div class="choice-row"><span class="question-text">Gaming</span><label><input type="checkbox" name="choice" value="gaming"></label></div>
+                <div class="choice-row"><span class="question-text">You use a VPN</span><label><input type="checkbox" name="choice" value="vpn"></label></div>
+                <div class="choice-row"><span class="question-text">Streaming TV</span><label><input type="checkbox" name="choice" value="streaming"></label></div>
+                <div class="choice-row"><span class="question-text">Surfing the internet</span><label><input type="checkbox" name="choice" value="surfing"></label></div>
+                <div class="choice-row"><span class="question-text">Business</span><label><input type="checkbox" name="choice" value="business"></label></div>
+                <div class="choice-row"><span class="question-text">How many people:</span>
+                    <label><input type="radio" name="people" value="1"> 1</label>
+                    <label><input type="radio" name="people" value="2"> 2</label>
+                    <label><input type="radio" name="people" value="3"> 3</label>
+                    <label><input type="radio" name="people" value="4"> 4</label>
+                    <label><input type="radio" name="people" value="more"> more</label>
+                </div>
+                <div class="choice-row"><span class="question-text">How many devices:</span>
+                    <label><input type="radio" name="devices" value="1-2"> 1-2</label>
+                    <label><input type="radio" name="devices" value="3-4"> 3-4</label>
+                    <label><input type="radio" name="devices" value="5 or more"> 5 or more</label>
+                </div>
+            </div>
+            <button class="button" onclick="submitQuiz()">Submit</button>
+            <button class="button" onclick="nextStep('choices', 'services')">View Services</button>
+            <button class="button" onclick="nextStep('choices', 'kits')">View Kits</button>
+            <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
 
-        <!-- Results, Services, Business – unchanged except for links if needed -->
+        <!-- Results -->
+        <div id="step-results" class="step">
+            <h2>Our Recommendation</h2>
+            <div id="recommendation"></div>
+            <p>Enter your address to see what sales and promotions are available for you!</p>
+            <input type="text" id="results-address" placeholder="Enter your address">
+            <button class="button" onclick="mockPromoCheck()">Check for promotions</button>
+            <div id="promo-result"></div>
+            <button class="button" onclick="nextStep('results', 'choices')">What Starlink Is Right For Me?</button>
+            <button class="button" onclick="nextStep('results', 'services')">View Services</button>
+            <button class="button" onclick="nextStep('results', 'kits')">View Kits</button>
+            <button class="back-button" onclick="goToStep('choices')">Back</button>
+        </div>
 
-        <!-- VIEW KITS PAGE -->
+        <!-- Services -->
+        <div id="step-services" class="step">
+            <h2>View Services</h2>
+            <p>Not all services are available in all areas.</p>
+            <div id="services-result"></div>
+            <div class="card">
+                <img src="images/residential-graphic.png" alt="Residential Graphic">
+                <h3>Residential Services</h3>
+                <ul>
+                    <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi (Not available in all areas)</li>
+                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi (Not available in all areas)</li>
+                    <li>MAX: $120/mo, Unlimited Data, Best Wi-Fi, Free Mini Kit for Travel</li>
+                </ul>
+                <p>Enter your address to see what's available for you.</p>
+                <input type="text" id="residential-address" placeholder="Enter address for availability check">
+                <button class="button" onclick="mockAddressCheckResidential()">Check Availability</button>
+                <div id="residential-result"></div>
+            </div>
+            <div class="card">
+                <img src="images/roam-graphic.png" alt="Roam Graphic">
+                <h3>Roam Services</h3>
+                <ul>
+                    <li>100GB: $50/mo, then low-speed</li>
+                    <li>Unlimited: $165/mo, in-motion OK</li>
+                </ul>
+                <p>Enter your address to see what's available for you.</p>
+                <input type="text" id="roam-address" placeholder="Enter address for availability check">
+                <button class="button" onclick="mockAddressCheckRoam()">Check Availability</button>
+                <div id="roam-result"></div>
+            </div>
+            <button class="button" onclick="nextStep('services', 'choices')">What Starlink Is Right For Me?</button>
+            <button class="button" onclick="nextStep('services', 'kits')">View Kits</button>
+            <button class="back-button" onclick="goToStep('intro')">Back</button>
+        </div>
+
+        <!-- Kits -->
         <div id="step-kits" class="step">
             <h2>View Kits</h2>
             <div class="card">
@@ -60,7 +135,6 @@
                 <button class="button" onclick="mockPromoCheckStandard()">Check for promotions</button>
                 <div id="standard-promo-result"></div>
             </div>
-
             <div class="card">
                 <h3>Mini Kit</h3>
                 <img src="images/mini-kit.png" alt="Mini Kit">
@@ -76,35 +150,30 @@
                 <button class="button" onclick="mockPromoCheckMini()">Check for promotions</button>
                 <div id="mini-promo-result"></div>
             </div>
-
             <button class="button" onclick="nextStep('kits', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('kits', 'services')">View Services</button>
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
 
-        <!-- Installation Page -->
+        <!-- Installation -->
         <div id="step-installation" class="step">
             <h2>Installation</h2>
             <p>Professional Installation available in most states, exact prices and availability shown during checkout.</p>
-
             <div class="card">
                 <h3>How Does Starlink Work</h3>
                 <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
                 <p>The dish is placed outside with a clear view of the sky, the Starlink cable runs into the home, attaching to the Router that broadcasts the Wi-Fi and powers the kit.</p>
             </div>
-
             <div class="card">
                 <h3>Self Install</h3>
                 <img src="images/self-install.png" alt="Self Install Graphic">
                 <p>Starlink is designed for self-installation. The kit includes everything you need to get connected in minutes.</p>
             </div>
-
             <div class="card">
                 <h3>Professional Installation</h3>
                 <img src="images/professional-install.png" alt="Professional Installation Graphic">
                 <p>Available in most states. Exact pricing and availability shown during checkout.</p>
             </div>
-
             <button class="button" onclick="nextStep('installation', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('installation', 'kits')">View Kits</button>
             <button class="button" onclick="nextStep('installation', 'services')">View Services</button>
