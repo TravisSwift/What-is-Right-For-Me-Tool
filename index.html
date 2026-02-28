@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,24 +35,56 @@
             <h2>Help us determine what kit and service best meets your needs.</h2>
             <p>Please check the choices that apply to you:</p>
             <div class="choices-group">
-                <div class="choice-row"><span class="question-text">Residential service</span><label><input type="checkbox" name="choice" value="residential"></label></div>
-                <div class="choice-row"><span class="question-text">Roaming Service (On the go)</span><label><input type="checkbox" name="choice" value="roam"></label></div>
-                <div class="choice-row"><span class="question-text">Work from Home</span><label><input type="checkbox" name="choice" value="work-from-home"></label></div>
-                <div class="choice-row"><span class="question-text">School from home</span><label><input type="checkbox" name="choice" value="school-from-home"></label></div>
-                <div class="choice-row"><span class="question-text">Video Calls</span><label><input type="checkbox" name="choice" value="video-calls"></label></div>
-                <div class="choice-row"><span class="question-text">Gaming</span><label><input type="checkbox" name="choice" value="gaming"></label></div>
-                <div class="choice-row"><span class="question-text">You use a VPN</span><label><input type="checkbox" name="choice" value="vpn"></label></div>
-                <div class="choice-row"><span class="question-text">Streaming TV</span><label><input type="checkbox" name="choice" value="streaming"></label></div>
-                <div class="choice-row"><span class="question-text">Surfing the internet</span><label><input type="checkbox" name="choice" value="surfing"></label></div>
-                <div class="choice-row"><span class="question-text">Business</span><label><input type="checkbox" name="choice" value="business"></label></div>
-                <div class="choice-row"><span class="question-text">How many people:</span>
+                <div class="choice-row">
+                    <span class="question-text">Residential service</span>
+                    <label><input type="checkbox" name="choice" value="residential"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Roaming Service (On the go)</span>
+                    <label><input type="checkbox" name="choice" value="roam"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Work from Home</span>
+                    <label><input type="checkbox" name="choice" value="work-from-home"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">School from home</span>
+                    <label><input type="checkbox" name="choice" value="school-from-home"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Video Calls</span>
+                    <label><input type="checkbox" name="choice" value="video-calls"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Gaming</span>
+                    <label><input type="checkbox" name="choice" value="gaming"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">You use a VPN</span>
+                    <label><input type="checkbox" name="choice" value="vpn"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Streaming TV</span>
+                    <label><input type="checkbox" name="choice" value="streaming"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Surfing the internet</span>
+                    <label><input type="checkbox" name="choice" value="surfing"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">Business</span>
+                    <label><input type="checkbox" name="choice" value="business"></label>
+                </div>
+                <div class="choice-row">
+                    <span class="question-text">How many people:</span>
                     <label><input type="radio" name="people" value="1"> 1</label>
                     <label><input type="radio" name="people" value="2"> 2</label>
                     <label><input type="radio" name="people" value="3"> 3</label>
                     <label><input type="radio" name="people" value="4"> 4</label>
                     <label><input type="radio" name="people" value="more"> more</label>
                 </div>
-                <div class="choice-row"><span class="question-text">How many devices:</span>
+                <div class="choice-row">
+                    <span class="question-text">How many devices:</span>
                     <label><input type="radio" name="devices" value="1-2"> 1-2</label>
                     <label><input type="radio" name="devices" value="3-4"> 3-4</label>
                     <label><input type="radio" name="devices" value="5 or more"> 5 or more</label>
@@ -71,7 +103,7 @@
             <p>Enter your address to see what sales and promotions are available for you!</p>
             <input type="text" id="results-address" placeholder="Enter your address">
             <button class="button" onclick="mockPromoCheck()">Check for promotions</button>
-            <div id="promo-result"></div>
+            <div style="margin-top: 2px;"></div>
             <button class="button" onclick="nextStep('results', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('results', 'services')">View Services</button>
             <button class="button" onclick="nextStep('results', 'kits')">View Kits</button>

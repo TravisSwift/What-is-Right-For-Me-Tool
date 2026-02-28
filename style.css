@@ -62,3 +62,7 @@ p { color: #ddd; }
     .choices-container { flex-direction: row; justify-content: space-around; }
     .choice-row { gap: 20px; }
 }
+
+#step-results .button {
+    margin-bottom: 2px;
+}
