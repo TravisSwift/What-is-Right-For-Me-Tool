@@ -8,37 +8,35 @@ body { font-family: 'Inter', Arial, sans-serif; background: #000; color: #fff; m
 .button:hover { background: #008bd4; }
 .card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 10px 0; border-radius: 8px; position: relative; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 .tooltip { position: relative; display: inline-block; cursor: help; }
-.tooltip .icon { width: 16px; height: 16px; filter: invert(1); } /* Inverts for dark theme */
+.tooltip .icon { width: 16px; height: 16px; filter: invert(1); }
 .tooltip .tooltip-text { display: none; position: absolute; background: #333; border: 1px solid #555; color: #fff; padding: 10px; width: 200px; z-index: 1; top: 20px; right: 0; border-radius: 4px; }
 .tooltip:hover .tooltip-text { display: block; }
-.sidebar { display: none; } /* Hidden by default on mobile */
+.sidebar { display: none; }
 .progress { list-style: none; padding: 0; }
 .progress li { margin: 10px 0; cursor: pointer; }
 .progress li.active { font-weight: bold; color: #00a3ff; }
-.rocket { width: 24px; height: 24px; transition: transform 0.5s; filter: brightness(1.2); } /* Fun animation with glow */
+.rocket { width: 24px; height: 24px; transition: transform 0.5s; filter: brightness(1.2); }
 input, label { display: block; margin: 10px 0; color: #fff; }
-input { background: #333; border: 1px solid #555; color: #fff; padding: 8px; border-radius: 4px; width: 100%; } /* Full-width inputs on mobile */
+input { background: #333; border: 1px solid #555; color: #fff; padding: 8px; border-radius: 4px; width: 100%; }
 .schematic, .equipment-image { max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px; }
 img { max-width: 100%; height: auto; border-radius: 4px; }
 ul { color: #ccc; list-style-type: disc; }
 h1, h2 { color: #fff; }
 p { color: #ddd; }
 
-/* New choice cards for initial options */
+/* Choice cards */
 .choice-card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 20px 0; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
 .choice-card img { margin-bottom: 10px; }
 
-/* New choices group for single div */
-.choices-group { background: #1a1a1a; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 5px; } /* Neat, tight spacing */
+/* Choices group */
+.choices-group { background: #1a1a1a; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 5px; }
+.choice-row { display: flex; align-items: center; gap: 10px; justify-content: flex-start; }
 
-/* New choice row for question + radio aligned left */
-.choice-row { display: flex; align-items: center; gap: 10px; justify-content: flex-start; } /* Aligned left inside div */
-
-/* New choices container for initial options (stack on mobile, row on desktop) */
+/* Choices container */
 .choices-container { display: flex; flex-direction: column; gap: 20px; }
 
-/* New mobile progress bar */
-.mobile-progress { display: none; } /* Removed dots entirely */
+/* Mobile progress bar (removed) */
+.mobile-progress { display: none; }
 
 /* 3px border for initial choice buttons */
 .choice-button { border: 3px solid #00a3ff; }
@@ -46,16 +44,21 @@ p { color: #ddd; }
 /* Discreet back button */
 .back-button { background: transparent; color: #ccc; border: none; text-decoration: underline; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
 
-/* Media query for desktop (min-width 769px) – enhance layout */
-@media (min-width: 769px) {
-    .sidebar { display: none; } /* Hidden by default on mobile */
-    .mobile-progress { display: none; } /* Hide mobile bar on desktop */
-    .button { width: auto; } /* Buttons not full-width on desktop */
-    .input { width: auto; } /* Inputs not full-width */
-    .choice-card { display: inline-block; width: 30%; margin: 1.5%; } /* Side-by-side on desktop */
-    .choices-container { flex-direction: row; justify-content: space-around; }
-    .choice-row { gap: 20px; } /* More space on desktop */
+/* FORCE 2px black space between ALL consecutive blue buttons on every page */
+.step .button + .button {
+    margin-top: 2px !important;
 }
 
-/* Add 2px black space between blue buttons at bottom of steps */
-.step .button + .button { margin-top: 2px; }
+/* Extra safety for the Results page (fixes the exact issue you saw) */
+#step-results .button + .button {
+    margin-top: 2px !important;
+}
+
+/* Media query for desktop */
+@media (min-width: 769px) {
+    .button { width: auto; }
+    .input { width: auto; }
+    .choice-card { display: inline-block; width: 30%; margin: 1.5%; }
+    .choices-container { flex-direction: row; justify-content: space-around; }
+    .choice-row { gap: 20px; }
+}
