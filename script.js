@@ -72,7 +72,7 @@ function submitQuiz() {
 
     // Display
     let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
-    html += '<p>200 Mbps and 100 Mbps services are available in limited areas. Enter your address to check availability.</p>';
+    html += '<p>200 Mbps and 100 Mbps services are available in limited areas.</p>';
     document.getElementById('recommendation').innerHTML = html;
 
     nextStep('choices', 'results');
