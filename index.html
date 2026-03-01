@@ -69,9 +69,9 @@
         <div id="step-results" class="step">
             <h2>Our Recommendation</h2>
             <div id="recommendation"></div>
-            <p>Enter your address to see what services, sales and promotions are available for you!</p>
+            <p>Enter your address to see what services, sales, and promotions are available for you!</p>
             <input type="text" id="results-address" placeholder="Enter your address">
-            <button class="button" onclick="mockPromoCheck()">Check for promotions</button>
+            <button class="button" onclick="mockPromoCheck()">Enter your address</button>
             <div style="height:2px;background:#000;margin:2px 0;"></div>
             <button class="button" onclick="nextStep('results', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('results', 'services')">View Services</button>
@@ -82,7 +82,7 @@
         <!-- 4. Services -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
-            <p>Not all services are available in all areas. Enter your address to see what services, sales and promotions are available for you!</p>
+            <p>Not all services are available in all areas. Enter your address to see what services are available for you!</p>
             <div id="services-result"></div>
             <div class="card">
                 <img src="images/residential-graphic.png" alt="Residential Graphic">
@@ -94,7 +94,7 @@
                     
 </li>
                 </ul>
-                <p>Enter your address to see what services, sales and promotions are available for you!</p>
+                <p>Enter your address to see what services are available for you!</p>
                 <input type="text" id="residential-address" placeholder="Enter address for availability check">
                 <button class="button" onclick="mockAddressCheckResidential()">Check Availability</button>
                 <div id="residential-result"></div>
@@ -106,7 +106,7 @@
                     <li>100GB: $50/mo, then low-speed</li>
                     <li>Unlimited: $165/mo, in-motion use OK</li>
                 </ul>
-                <p>Enter your address to see what services, sales and promotions are available for you!</p>
+                <p>Enter your address to see what services are available for you!</p>
                 <input type="text" id="roam-address" placeholder="Enter address for availability check">
                 <button class="button" onclick="mockAddressCheckRoam()">Check Availability</button>
                 <div id="roam-result"></div>
@@ -123,13 +123,13 @@
                 <h3>Standard Gen 3 Kit</h3>
                 <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
                 <ul>
-                    <li>Price: $349 (or less with promo)</li>
-                    <li>Wi-Fi 6 with Wi-FI up to 3200 sq ft</li>
+                    <li>Price: $349 (less with promo)</li>
+                    <li>Wi-Fi 6 broadcast upto 3200 sq ft</li>
                     <li>>99.9% Uptime</li>
-                    <li>Designed for self-install: Plug it in, Point at sky</li>
+                    <li>Designed for self-install: Plug it in, Point at the sky</li>
                 </ul>
                 <button class="button" onclick="nextStep('kits', 'installation')">Installation</button>
-                <p>Check For Promotions:</p>
+                <p>Enter your address to see the current promotional price in your area.</p>
                 <input type="text" id="standard-address" placeholder="Enter your address">
                 <button class="button" onclick="mockPromoCheckStandard()">Check for promotions</button>
                 <div id="standard-promo-result"></div>
@@ -144,7 +144,7 @@
                     <li>Built-in router, portable</li>
                     <li>Great for travel—connects anywhere</li>
                 </ul>
-                <p>Check For Promotions:</p>
+                <p>Enter your address to see the current promotional price in your area.</p>
                 <input type="text" id="mini-address" placeholder="Enter your address">
                 <button class="button" onclick="mockPromoCheckMini()">Check for promotions</button>
                 <div id="mini-promo-result"></div>
@@ -161,7 +161,7 @@
             <div class="card">
                 <h3>How Does Starlink Work</h3>
                 <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
-                <p>The dish is placed outside with a clear view of the sky, the Starlink cable runs into the home, attaching to the Router that broadcasts the Wi-Fi and powers the kit.</p>
+                <p>The Starlink Satellite dish is placed outside with a clear view of the sky, a 50' Starlink cable runs into the home, attaching to the Router that broadcasts the Wi-Fi and powers the kit.</p>
             </div>
             <div class="card">
                 <h3>Self Install</h3>
