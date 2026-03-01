@@ -43,7 +43,7 @@ function submitQuiz() {
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => userData.choices.push(cb.value));
 
     if (userData.choices.length === 0) {
-        alert('Please make choices so we can make a suggestion.');
+        alert('Please make more choices so we can make a suggestion.');
         return;
     }
 
