@@ -60,10 +60,4 @@ my-starlink-tool/
 
 **Built with initiative to drive customer self-service and business growth.**
 
-Ready for review and discussion.
-
----
-
-You can copy and paste this directly as `README.md` in your repo. It’s written in a polished, executive-friendly tone that highlights business value without sounding overly technical or casual.
-
-Let me know if you’d like any tweaks (tone, length, or additional sections)! Great work on this project — it’s genuinely impressive. 🚀
+Ready for review and discussion. 🚀
