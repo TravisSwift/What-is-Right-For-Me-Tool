@@ -1,6 +1,16 @@
-const steps = ['intro', 'choices', 'results', 'services', 'kits', 'business', 'installation'];
+const steps = ['intro', 'choices', 'results', 'services', 'kits', 'business', 'installation', 'how'];
+
 let currentStep = 0;
-let userData = { address: '', choices: [], people: '', devices: '', kit: '', plan: '', promo: '', fee: '' };
+let userData = {
+    address: '',
+    choices: [],
+    people: '',
+    devices: '',
+    kit: '',
+    plan: '',
+    promo: '',
+    fee: ''
+};
 
 function nextStep(current, next) {
     document.getElementById(`step-${current}`).classList.remove('active');
@@ -8,7 +18,6 @@ function nextStep(current, next) {
     currentStep = steps.indexOf(next);
     updateProgress();
     saveData();
-    console.log(`Step completed: ${next}`);
 }
 
 function goToStep(step) {
@@ -37,13 +46,12 @@ function loadData() {
     if (saved) userData = JSON.parse(saved);
 }
 
-// Quiz submit (Residential always wins unless "roam" is chosen)
 function submitQuiz() {
     userData.choices = [];
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => userData.choices.push(cb.value));
 
     if (userData.choices.length === 0) {
-        alert('Please make more choices so we can make a suggestion.');
+        alert('You cannot provide results without making choices.');
         return;
     }
 
@@ -70,37 +78,41 @@ function submitQuiz() {
         userData.kit = 'Standard Gen 3 Kit';
     }
 
-    // Display
     let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
-    html += '<p>200 Mbps and 100 Mbps services are available in limited areas.</p>';
+    html += '<p>200 Mbps and 100 Mbps services are available in limited areas. Not available in all areas. Enter your address to check availability.</p>';
     document.getElementById('recommendation').innerHTML = html;
 
     nextStep('choices', 'results');
 }
 
-// Mock functions (unchanged)
 function mockPromoCheck() {
-    const address = document.getElementById('results-address').value;
+    const address = document.getElementById('results-address').value || "your address";
     alert('In production: Check promotions for address: ' + address);
     document.getElementById('promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
 function mockPromoCheckStandard() {
-    const address = document.getElementById('standard-address').value;
+    const address = document.getElementById('standard-address').value || "your address";
     alert('In production: Check promotions for address: ' + address);
     document.getElementById('standard-promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
 function mockPromoCheckMini() {
-    const address = document.getElementById('mini-address').value;
+    const address = document.getElementById('mini-address').value || "your address";
     alert('In production: Check promotions for address: ' + address);
     document.getElementById('mini-promo-result').innerHTML = '<p>Promotions checked (mock): $0 Kit Rental available!</p>';
 }
 
-function mockAddressCheck() {
-    const address = document.getElementById('services-address').value;
+function mockAddressCheckResidential() {
+    const address = document.getElementById('residential-address').value || "your address";
     alert('In production: Redirect to Starlink availability checker with address: ' + address);
-    document.getElementById('services-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
+    document.getElementById('residential-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
+}
+
+function mockAddressCheckRoam() {
+    const address = document.getElementById('roam-address').value || "your address";
+    alert('In production: Redirect to Starlink availability checker with address: ' + address);
+    document.getElementById('roam-result').innerHTML = '<p>Availability checked (mock): Services available in your area!</p>';
 }
 
 function placeOrder() {
@@ -113,5 +125,5 @@ loadData();
 updateProgress();
 
 document.addEventListener('DOMContentLoaded', () => {
-    // All buttons are already wired in HTML
+    // All buttons are wired in HTML
 });

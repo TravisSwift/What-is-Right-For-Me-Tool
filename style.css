@@ -1,53 +1,156 @@
-/* Base styles (mobile-first) */
-body { font-family: 'Inter', Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
-.container { max-width: 800px; margin: auto; }
-.header { text-align: center; margin-bottom: 20px; color: #fff; }
-.step { display: none; background: #000; }
-.active { display: block; }
-.button { background: #00a3ff; color: #000; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%; }
-.button:hover { background: #008bd4; }
-.card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-input, label { display: block; margin: 10px 0; color: #fff; }
-input { background: #333; border: 1px solid #555; color: #fff; padding: 8px; border-radius: 4px; width: 100%; }
-img { max-width: 100%; height: auto; border-radius: 4px; }
-ul { color: #ccc; list-style-type: disc; }
-h1, h2 { color: #fff; }
-p { color: #ddd; }
+/* =============================================
+   Starlink Decision Tool - Full CSS
+   ============================================= */
 
-/* Choice cards */
-.choice-card { background: #1a1a1a; border: 1px solid #333; padding: 15px; margin: 20px 0; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
-.choice-card img { margin-bottom: 10px; }
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
 
-/* Choices group */
-.choices-group { background: #1a1a1a; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 5px; }
-.choice-row { display: flex; align-items: center; gap: 10px; justify-content: flex-start; }
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-/* Choices container */
-.choices-container { display: flex; flex-direction: column; gap: 20px; }
+/* Top Header */
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #222;
+}
 
-/* Mobile progress bar removed */
-.mobile-progress { display: none; }
+.starlink-logo {
+    font-size: 2.0rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: #fff;
+    text-decoration: none;
+}
 
-/* 3px border on main choice buttons */
-.choice-button { border: 3px solid #00a3ff; }
+.home-icon {
+    width: 34px;
+    height: 34px;
+    filter: brightness(1.1);
+}
+
+/* Page Header */
+.header {
+    text-align: center;
+    margin: 40px 0 50px 0;
+    padding: 0 15px;
+}
+
+/* 4-Card Grid - Perfect alignment */
+.choices-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 0 15px;
+}
+
+.choice-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+
+.card-image {
+    background: #111;
+    padding: 28px 15px;
+    min-height: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    max-height: 135px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Blue buttons - restored to original color */
+.button.choice-button,
+.button {
+    background: #00a3ff;
+    color: #000;
+    border: none;
+    padding: 16px 20px;
+    font-weight: bold;
+    font-size: 1.05rem;
+    width: 100%;
+    margin-top: auto;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #008bd4;
+}
 
 /* Back button */
-.back-button { background: transparent; color: #ccc; border: none; text-decoration: underline; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
-
-/* 2px black space between ALL consecutive blue buttons */
-.step .button + .button {
-    margin-top: 2px !important;
+.back-button {
+    background: transparent;
+    color: #aaa;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-top: 20px;
 }
 
-/* Extra fix for Recommendation page */
-#step-results .button {
-    margin-bottom: 2px !important;
+/* General card */
+.card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
-/* Desktop enhancements */
+/* Links */
+a {
+    color: #00a3ff;
+    text-decoration: underline;
+}
+
+/* Hide inactive steps */
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+/* Desktop improvements */
 @media (min-width: 769px) {
-    .button { width: auto; }
-    .choice-card { display: inline-block; width: 30%; margin: 1.5%; }
-    .choices-container { flex-direction: row; justify-content: space-around; }
-    .choice-row { gap: 20px; }
+    .choices-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .button {
+        width: auto;
+    }
+}
+
+/* 2px black space between consecutive blue buttons */
+.step .button + .button {
+    margin-top: 2px;
 }

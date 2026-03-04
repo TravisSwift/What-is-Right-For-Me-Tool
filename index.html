@@ -9,7 +9,15 @@
 <body>
     <div class="container">
 
-        <!-- 1. Intro -->
+        <!-- Top Header -->
+        <div class="top-header">
+            <a href="#" onclick="goToStep('intro')" class="starlink-logo">STARLINK</a>
+            <a href="#" onclick="goToStep('intro')" class="home-icon-link">
+                <img src="images/home_icon.png" alt="Home" class="home-icon">
+            </a>
+        </div>
+
+        <!-- Intro Page - 4 aligned cards -->
         <div id="step-intro" class="step active">
             <div class="header">
                 <h1>What Starlink Is Right For Me?</h1>
@@ -17,26 +25,50 @@
             </div>
             <div class="choices-container">
                 <div class="choice-card">
-                    <img src="images/quiz-graphic.png" alt="Quiz Graphic">
+                    <div class="card-image">
+                        <img src="images/quiz-graphic.png" alt="Quiz Graphic">
+                    </div>
                     <button class="button choice-button" onclick="nextStep('intro', 'choices')">What Starlink Is Right For Me?</button>
                 </div>
                 <div class="choice-card">
-                    <img src="images/services-graphic.png" alt="Services Graphic">
+                    <div class="card-image">
+                        <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
+                    </div>
+                    <button class="button choice-button" onclick="nextStep('intro', 'how')">How Does Starlink Work?</button>
+                </div>
+                <div class="choice-card">
+                    <div class="card-image">
+                        <img src="images/services-graphic.png" alt="Services Graphic">
+                    </div>
                     <button class="button choice-button" onclick="nextStep('intro', 'services')">View Services</button>
                 </div>
                 <div class="choice-card">
-                    <img src="images/kits-graphic.png" alt="Kits Graphic">
+                    <div class="card-image">
+                        <img src="images/kits-graphic.png" alt="Kits Graphic">
+                    </div>
                     <button class="button choice-button" onclick="nextStep('intro', 'kits')">View Kits</button>
                 </div>
             </div>
         </div>
 
-        <!-- 2. Quiz -->
+        <!-- How Does Starlink Work Page -->
+        <div id="step-how" class="step">
+            <h2>How Does Starlink Work?</h2>
+            <div class="card">
+                <h3>How Does Starlink Work</h3>
+                <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
+                <p>The Starlink Satellite dish is placed outside with a clear view of the sky, a 50' Starlink cable runs into the home, attaching to the router that broadcasts the Wi-Fi and powers the kit.</p>
+            </div>
+            <button class="button" onclick="nextStep('how', 'installation')">What About Installation?</button>
+            <button class="button" onclick="nextStep('how', 'choices')">What Starlink Is Right For Me?</button>
+            <button class="button" onclick="nextStep('how', 'services')">View Services</button>
+            <button class="button" onclick="nextStep('how', 'kits')">View Kits</button>
+            <button class="back-button" onclick="goToStep('intro')">Back</button>
+        </div>
+
+        <!-- Quiz Page -->
         <div id="step-choices" class="step">
             <h2>Help us determine what kit and service best meets your needs.</h2>
-            <img src="images/how-starlink-works.png" 
-     alt="How Starlink Works Graphic" 
-     style="display: block; margin: 20px auto; max-width: 100%; border-radius: 8px;">
             <p>Please check the choices that apply to you:</p>
             <div class="choices-group">
                 <div class="choice-row"><span class="question-text">Residential service</span><label><input type="checkbox" name="choice" value="residential"></label></div>
@@ -68,13 +100,13 @@
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
 
-        <!-- 3. Results -->
+        <!-- Results Page -->
         <div id="step-results" class="step">
             <h2>Our Recommendation</h2>
             <div id="recommendation"></div>
-            <p>Enter your address to see what services, sales, and promotions are available for you!</p>
+            <p>Enter your address to see what sales and promotions are available for you!</p>
             <input type="text" id="results-address" placeholder="Enter your address">
-            <button class="button" onclick="mockPromoCheck()">Enter your address</button>
+            <button class="button" onclick="mockPromoCheck()">Check for promotions</button>
             <div style="height:2px;background:#000;margin:2px 0;"></div>
             <button class="button" onclick="nextStep('results', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('results', 'services')">View Services</button>
@@ -82,23 +114,20 @@
             <button class="back-button" onclick="goToStep('choices')">Back</button>
         </div>
 
-        <!-- 4. Services -->
+        <!-- Services Page -->
         <div id="step-services" class="step">
             <h2>View Services</h2>
-            <p>Not all services are available in all areas, check for availability.</p>
+            <p>Not all services are available in all areas.</p>
             <div id="services-result"></div>
             <div class="card">
-                <img src="images/residential_service_icon.png" alt="Residential Graphic">
+                <img src="images/residential-graphic.png" alt="Residential Graphic">
                 <h3>Residential Services</h3>
                 <ul>
-                    <li>MAX 400 Mbps: $120/mo, Unlimited high-speed data with our best residential Wi-Fi service available.</li>
-                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi (Not available in all areas)</li>
                     <li>100 Mbps: $50/mo, Unlimited Data, Good Wi-Fi (Not available in all areas)</li>
-                     
-                    
-</li>
+                    <li>200 Mbps: $80/mo, Unlimited Data, Great Wi-Fi (Not available in all areas)</li>
+                    <li>MAX: $120/mo – Unlimited high-speed data with the best Wi-Fi coverage available.</li>
                 </ul>
-                <p>Enter your address to see what services are available for you!</p>
+                <p>Enter your address to see what's available for you.</p>
                 <input type="text" id="residential-address" placeholder="Enter address for availability check">
                 <button class="button" onclick="mockAddressCheckResidential()">Check Availability</button>
                 <div id="residential-result"></div>
@@ -108,9 +137,9 @@
                 <h3>Roam Services</h3>
                 <ul>
                     <li>100GB: $50/mo, then low-speed</li>
-                    <li>Unlimited: $165/mo, in-motion use OK</li>
+                    <li>Unlimited: $165/mo, in-motion OK</li>
                 </ul>
-                <p>Enter your address to see what services are available for you!</p>
+                <p>Enter your address to see what's available for you.</p>
                 <input type="text" id="roam-address" placeholder="Enter address for availability check">
                 <button class="button" onclick="mockAddressCheckRoam()">Check Availability</button>
                 <div id="roam-result"></div>
@@ -120,35 +149,39 @@
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
 
-        <!-- 5. Kits -->
+        <!-- Kits Page -->
         <div id="step-kits" class="step">
             <h2>View Kits</h2>
             <div class="card">
                 <h3>Standard Gen 3 Kit</h3>
-                <img src="images/Starlink_Standard.png" alt="Standard Gen 3 Kit">
+                <img src="images/standard-dish.png" alt="Standard Gen 3 Kit">
                 <ul>
-                    <li>Price: $349 (less with promo)</li>
-                    <li>Wi-Fi 6 broadcast upto 3200 sq ft</li>
-                    <li>>99.9% Uptime</li>
-                    <li>Designed for self-install: Plug it in, Point at the sky</li>
+                    <li>Price: $349 (or promo)</li>
+                    <li>Dimensions: 23.4x15x1.5in</li>
+                    <li>Weight: 6.4lbs</li>
+                    <li>Wi-Fi 6 up to 3200 sq ft</li>
+                    <li>Plug & Play Setup</li>
+                    <li>Weather Resilient, >99.9% Uptime</li>
+                    <li>Components: Starlink, Kickstand, Gen 3 Router, Starlink Cable, AC Cable, Power Supply</li>
+                    <li>Designed for self-install: Plug it in, Point at sky</li>
                 </ul>
-                <button class="button" onclick="nextStep('kits', 'installation')">What About Installation?</button>
-                <p>Enter your address to see the current promotional price in your area.</p>
+                <button class="button" onclick="nextStep('kits', 'installation')">Installation</button>
+                <p>Check For Promotions:</p>
                 <input type="text" id="standard-address" placeholder="Enter your address">
                 <button class="button" onclick="mockPromoCheckStandard()">Check for promotions</button>
                 <div id="standard-promo-result"></div>
             </div>
             <div class="card">
                 <h3>Mini Kit</h3>
-                <img src="images/Starlink_Mini.png" alt="Mini Kit">
+                <img src="images/mini-kit.png" alt="Mini Kit">
                 <ul>
-                    <li>Price: $599 (less with promo)</li>
-                    <li>Dimensions: 16.92 x 13.14 x 3.11 in</li>
+                    <li>Price: $599</li>
+                    <li>Dimensions: 12x10x1.5in</li>
                     <li>Weight: 2.5lbs</li>
                     <li>Built-in router, portable</li>
                     <li>Great for travel—connects anywhere</li>
                 </ul>
-                <p>Enter your address to see the current promotional price in your area.</p>
+                <p>Check For Promotions:</p>
                 <input type="text" id="mini-address" placeholder="Enter your address">
                 <button class="button" onclick="mockPromoCheckMini()">Check for promotions</button>
                 <div id="mini-promo-result"></div>
@@ -158,37 +191,33 @@
             <button class="back-button" onclick="goToStep('intro')">Back</button>
         </div>
 
-        <!-- 6. Installation -->
+        <!-- Installation Page -->
         <div id="step-installation" class="step">
             <h2>Installation</h2>
             <p>Professional Installation available in most states, exact prices and availability shown during checkout.</p>
             <div class="card">
-                <h3>How Does Starlink Work</h3>
-                <img src="images/how-starlink-works.png" alt="How Starlink Works Graphic">
-                <p>The Starlink Satellite dish is placed outside with a clear view of the sky, a 50' Starlink cable runs into the home, attaching to the router that broadcasts the Wi-Fi and powers the kit.</p>
-            </div>
-            <div class="card">
                 <h3>Self Install</h3>
                 <img src="images/self-install.png" alt="Self Install Graphic">
-                <p>Starlink is designed for self-installation. The kit includes everything you need to get connected in minutes. <a href="https://starlink.com/public-files/accessories_guide_standard.pdf" target="_blank" style="color:#00a3ff; text-decoration:underline;">Various mounting kits available.</a></p>
-
+                <p>Starlink is designed for self-installation. The kit includes everything you need to get connected in minutes.</p>
             </div>
             <div class="card">
                 <h3>Professional Installation</h3>
                 <img src="images/professional-install.png" alt="Professional Installation Graphic">
                 <p>Available in most states. Exact pricing and availability shown during checkout.</p>
-                <div class="card">
-    <h3>Starlink App</h3>
-    <img src="images/starlink-app.png" alt="Starlink App Graphic">
-    <p>The Starlink App is essential for professional and home installers. It provides step-by-step guidance for pointing the dish, real-time obstruction detection, troubleshooting, firmware updates, and account management.  <p><strong>Download the Starlink App:</strong></p>
-    <a href="https://play.google.com/store/apps/details?id=com.starlink.mobile" target="_blank" class="app-link">Google Play Store</a><br><br>
-    <a href="https://apps.apple.com/us/app/starlink/id1533683123" target="_blank" class="app-link">Apple App Store</a></p>
-</div>
             </div>
             <button class="button" onclick="nextStep('installation', 'choices')">What Starlink Is Right For Me?</button>
             <button class="button" onclick="nextStep('installation', 'kits')">View Kits</button>
             <button class="button" onclick="nextStep('installation', 'services')">View Services</button>
             <button class="back-button" onclick="goToStep('kits')">Back</button>
+        </div>
+
+        <!-- Business Page -->
+        <div id="step-business" class="step">
+            <img src="images/business-graphic.png" alt="Starlink Business Graphic">
+            <h2>Starlink Business</h2>
+            <p>Starlink Business offers high-speed, low-latency internet for enterprises. Benefits: Priority support, higher speeds, dedicated hardware.</p>
+            <a href="https://www.starlink.com/business" target="_blank">Visit business.starlink.com for more</a>
+            <button class="back-button" onclick="goToStep('choices')">Back</button>
         </div>
 
     </div>
