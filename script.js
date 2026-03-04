@@ -51,7 +51,7 @@ function submitQuiz() {
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => userData.choices.push(cb.value));
 
     if (userData.choices.length === 0) {
-        alert('You cannot provide results without making choices.');
+        alert('Please make more choices so we can make a recommendation.');
         return;
     }
 
@@ -79,7 +79,7 @@ function submitQuiz() {
     }
 
     let html = `<p>Recommended Kit: ${userData.kit}</p><p>Recommended Service: ${userData.plan}</p>`;
-    html += '<p>200 Mbps and 100 Mbps services are available in limited areas. Not available in all areas. Enter your address to check availability.</p>';
+    html += '<p>200 Mbps and 100 Mbps services are available in limited areas.</p>';
     document.getElementById('recommendation').innerHTML = html;
 
     nextStep('choices', 'results');
